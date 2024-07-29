@@ -1,0 +1,81 @@
+.recentWork{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5%;
+}
+.recentWork:nth-child(even){
+    flex-direction: row-reverse;
+}
+.recentWork:nth-child(odd) .detail{
+    text-align: left;
+}
+.recentWork:nth-child(even) .detail{
+    text-align: right;
+}
+.detail{
+    width: 35%;
+}
+.image {
+    width: 65%;
+    padding: 0px 50px;
+    box-sizing: border-box;
+    border-radius: 20px;
+}
+.image img{
+    border-radius: 20px;
+    width: 100%;
+}
+.recentWorkHdDiv h1{
+    font-size: 100px;
+    text-transform: capitalize;
+    line-height: 100px;
+}
+.recentWorkHdDiv h1 span{
+    display: block;
+}
+.recentWorkHdDiv h1 span:nth-child(1){
+    margin-left: 50px;
+}
+.recentWorkHdDiv h1 span{
+    position: relative;
+    overflow: hidden;
+    color: whitesmoke;
+    background: linear-gradient(to right, black 50%, transparent 50%);
+    background-size: 200% 100%;
+    background-clip: text;
+    -webkit-background-clip: text; 
+    color: transparent; 
+  }
+.detail .projectDetail{
+    margin-top: 30px;
+}
+.detail h2{
+    font-size: 50px;
+}
+.detail p{
+    font-size: 22px;
+}
+
+.projectDetailBtn{
+    border:1px solid black;
+    border-radius: 30px;
+    padding: 15px 20px;
+    font-size: 15px;
+    background: transparent;
+    cursor: pointer;
+    transition: all .5s ease;
+}
+.projectDetailBtn:hover{
+    background-color: black;
+    color: white;
+    border-color: black;
+}
+.videoDiv{
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+  transform: translateX(-50%);
+}
