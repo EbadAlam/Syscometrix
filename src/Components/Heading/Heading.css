@@ -1,0 +1,21 @@
+.animated-heading{
+    font-size: 150px;
+    text-transform: capitalize;
+    line-height: 115px;
+}
+.animated-heading span{
+    display: block;
+}
+.animated-heading .animated-heading-span-2{
+    margin-left: 50px;
+}
+.animated-heading span{
+    position: relative;
+    overflow: hidden;
+    color: whitesmoke;
+    background: linear-gradient(to right, black 50%, transparent 50%);
+    background-size: 200% 100%;
+    background-clip: text;
+    -webkit-background-clip: text; 
+    color: transparent; 
+  }

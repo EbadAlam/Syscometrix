@@ -7,6 +7,10 @@ import projectImageTwo from '../../Assets/Images/imusic-main-landscape.webp';
 import projectImageThree from '../../Assets/Images/technis-main-landscape.webp';
 import gsap from 'gsap/all';
 import introVideo from '../../Assets/Images/intro-video.mp4';
+import Heading from '../../Components/Heading/Heading';
+import Paragraph from '../../Components/Paragraph/Paragraph';
+import dribble1 from '../../Assets/Images/dribbble1.webp';
+import dribble2 from '../../Assets/Images/dribbble2.webp';
 function Home() {
   useEffect(() => {
     const videoDiv = document.querySelector('.videoDiv');
@@ -17,7 +21,7 @@ function Home() {
       end: '+=100vh',
       scrub: 2,
       // pin: true, 
-      markers: true ,
+      // markers: true ,
       id:'video',
     }
   })
@@ -31,27 +35,6 @@ function Home() {
       borderRadius:'10rem',
     }
   );
-
-  const heading = document.querySelector('.recentWorkHdDiv').querySelector('h1');
-
-  gsap.fromTo(
-    'h1 span',
-    { backgroundPosition: '100% 0'}, 
-    {
-      marginLeft:0,
-      backgroundPosition: '0% 0', 
-      duration: 1, 
-      ease: 'none', 
-      scrollTrigger: {
-        trigger: heading,
-        start: 'top 80%', 
-        end: 'top 50%', 
-        scrub: 1, 
-        markers: true,
-      }
-    }
-  );
-
     document.querySelectorAll('.recentWork').forEach((section) => {
       const image = section.querySelector('.image');
       const detail = section.querySelector('.detail');
@@ -64,7 +47,7 @@ function Home() {
           start: '-200px 100%',
           end: 'bottom 90%',
           scrub: 2,
-          markers: true,
+          // markers: true,
           id: 'mm',
         }
       })
@@ -82,7 +65,7 @@ function Home() {
       )
       .fromTo(detail,
         {
-          yPercent: 100,
+          yPercent: 150,
           opacity: 0
         },
         {
@@ -94,99 +77,272 @@ function Home() {
       );
     });
 
+    document.querySelectorAll('.whoWeAre').forEach((section) => {
+      const direction = section.classList.contains('right') ? -50 : 50;
+      const rotate = section.classList.contains('right') ? -50 : 50;
 
+      gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 100%',
+          end: 'top 90%',
+          scrub: 4,
+          // markers: true,
+          id: 'services',
+        }
+      })
+      .fromTo(section,
+        {
+          xPercent: direction,
+          rotate: rotate
+        },
+        {
+          xPercent: 0,
+          rotate: 0,
+          duration: 2
+        },
+        '<'
+      )
+      .fromTo(section,
+        {
+          yPercent: 150,
+          opacity: 0
+        },
+        {
+          yPercent: 0,
+          opacity: 1,
+          duration: 2
+        },
+        '<'
+      );
+    });
+    const dribblesDiv = document.querySelectorAll('.dribble');
+    dribblesDiv.forEach((section, index) => {
+      const direction = section.classList.contains('right') ? 80 : -80;
+      const rotate = section.classList.contains('right') ? 50 : -50;
+    
+      gsap.to(section, {
+        scrollTrigger: {
+          trigger: dribblesDiv[0],
+          start: 'top 50%',
+          end: `top 90%`, 
+          scrub: 4,
+          // markers: true,
+          id: `dribble`,
+          
+        },
+        xPercent: direction,
+        rotate: rotate,
+        ease:'power1.in',
+      });
+    });
+    gsap.to('.dribbleBack', {
+      scrollTrigger: {
+        trigger: dribblesDiv[0],
+        start: '30% 100%',
+        // end: 'bottom top', 
+        scrub: 10, 
+        // markers: true, 
+        id: 'background-div',
+      },
+      yPercent: -70, 
+      // ease: 'power1.inOut', 
+    });
+   
+    
   }, []); 
-  
-  
-  
   return (
     <>
-      <HomeBanner>
-        <div className="container">
-          <HeadingDiv>
-            <h3>We Are</h3>
-          </HeadingDiv>
-          <LogoDiv>
-            <img src={logo} style={{width:'100%'}} alt="" />
-          </LogoDiv>
-          <AboutTextDiv>
-            <p>We founded our company in 2010 and have since evolved into a prominent US-based web design and development business, serving thousands of clients.</p>
-          </AboutTextDiv>
-          <div className="videoDiv">
-            <video
-              width="100%"       
-              autoPlay          
-              muted              
-              loop               
-            >
-              <source src={introVideo} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          </div>
-        </div>
-      </HomeBanner>
-    <div className="recentWorkMain">
+    {/* <WebGLCanvas /> */}
       <div className="container">
-        <div className="recentWorkHdDiv">
-          {/* <h1 data-text="Apps we built">Apps we built</h1> */}
-          <h1 data-text="Apps we built">
-            <span>Apps We</span>
-            <span>Built</span>
-          </h1>
-          {/* <h4>They've been trending on the App Store</h4> */}
+        <HomeBanner>
+            <HeadingDiv>
+              <h3>We Are</h3>
+            </HeadingDiv>
+            <LogoDiv>
+              <img src={logo} style={{width:'100%'}} alt="" />
+            </LogoDiv>
+            <AboutTextDiv>
+              <p>We founded our company in 2010 and have since evolved into a prominent US-based web design and development business, serving thousands of clients.</p>
+            </AboutTextDiv>
+            <div className="videoDiv">
+              <video
+                width="100%"       
+                autoPlay          
+                muted              
+                loop               
+              >
+                <source src={introVideo} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+        </HomeBanner>
+        <div className="recentWorkMain">
+        <Heading HT1={`Apps We`} HT2={`Built`}/>
+        <Paragraph text="Lorem ipsum dolor sit amet consectetur" />
+          <div className="recentWorks">
+            <div className="recentWork left">
+              <div className="detail">
+                <div className="heading">
+                  <h2>Project Name</h2>
+                  </div>
+                  <div className="keypoints">
+                  <p>Project Keypoints</p>
+                  </div>
+                  <div className="projectDetail">
+                  <button className="projectDetailBtn">View Project</button>
+                  </div>
+              </div>
+              <div className="image">
+                <img src={projectImageOne} alt="" />
+              </div>
+            </div>
+            <div className="recentWork right">
+              <div className="detail">
+                <div className="heading">
+                  <h2>Project Name</h2>
+                  </div>
+                  <div className="keypoints">
+                  <p>Project Keypoints</p>
+                  </div>
+                  <div className="projectDetail">
+                  <button className="projectDetailBtn">View Project</button>
+                  </div>
+              </div>
+              <div className="image">
+                <img src={projectImageTwo} alt="" />
+              </div>
+            </div>
+            <div className="recentWork left">
+              <div className="detail">
+                <div className="heading">
+                  <h2>Project Name</h2>
+                  </div>
+                  <div className="keypoints">
+                  <p>Project Keypoints</p>
+                  </div>
+                  <div className="projectDetail">
+                  <button className="projectDetailBtn">View Project</button>
+                  </div>
+              </div>
+              <div className="image">
+                <img src={projectImageThree} alt="" />
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="recentWorks">
-          <div className="recentWork left">
-            <div className="detail">
-              <div className="heading">
-                <h2>Project Name</h2>
-                </div>
-                <div className="keypoints">
-                <p>Project Keypoints</p>
-                </div>
-                <div className="projectDetail">
-                <button className="projectDetailBtn">View Project</button>
-                </div>
+        <div className="whoWeAreMain">
+          <div className="headingText">
+            <Heading HT1={`Who`} HT2={`We Are`}/>
+            <Paragraph text="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Itaque inventore magni et, similique placeat deserunt quam ipsam, corporis ad dicta commodi eveniet" />
+          </div>
+          <div className="whoeWeAreDiv">
+            <div className="whoWeAre right">
+              <div className="serviceIconDiv">
+                <h2>icon</h2>
+              </div>
+              <div className="serviceName">
+                <h3>Mobile App Development</h3>
+              </div>
             </div>
-            <div className="image">
-              <img src={projectImageOne} alt="" />
+            <div className="whoWeAre left">
+              <div className="serviceIconDiv">
+                <h2>icon</h2>
+              </div>
+              <div className="serviceName">
+                <h3>serviceName</h3>
+              </div>
+            </div>
+            <div className="whoWeAre right">
+              <div className="serviceIconDiv">
+                <h2>icon</h2>
+              </div>
+              <div className="serviceName">
+                <h3>serviceName</h3>
+              </div>
+            </div>
+            <div className="whoWeAre left">
+              <div className="serviceIconDiv">
+                <h2>icon</h2>
+              </div>
+              <div className="serviceName">
+                <h3>serviceName</h3>
+              </div>
+            </div>
+            <div className="whoWeAre right">
+              <div className="serviceIconDiv">
+                <h2>icon</h2>
+              </div>
+              <div className="serviceName">
+                <h3>serviceName</h3>
+              </div>
+            </div>
+            <div className="whoWeAre left">
+              <div className="serviceIconDiv">
+                <h2>icon</h2>
+              </div>
+              <div className="serviceName">
+                <h3>serviceName</h3>
+              </div>
             </div>
           </div>
-          <div className="recentWork right">
-            <div className="detail">
-              <div className="heading">
-                <h2>Project Name</h2>
-                </div>
-                <div className="keypoints">
-                <p>Project Keypoints</p>
-                </div>
-                <div className="projectDetail">
-                <button className="projectDetailBtn">View Project</button>
-                </div>
+        </div>
+        </div>
+        {/* <div className="partnerLoveMain">
+            <Heading HT1="Partner" HT2="Love" />
+            <div id="slider" className="slider" ref={sliderRef}>
+              {pictures.map((item, index) => {
+                return (
+                  <Slide key={index} imageSource={item.source} content={item.content} />
+                );
+              })}
             </div>
-            <div className="image">
-              <img src={projectImageTwo} alt="" />
+        </div> */}
+      <div className="container">
+        <div className="dribbleMain">
+            <div className="dribbleDiv">
+              <div className="dribble">
+                <img src={dribble1} alt="" />
+              </div>
+              <div className="dribble right">
+                <img src={dribble2} alt="" />
+              </div>
+              <div className="dribble">
+                <img src={dribble1} alt="" />
+              </div>
+              <div className="dribble right">
+                <img src={dribble2} alt="" />
+              </div>
+              <div className="dribble">
+                <img src={dribble1} alt="" />
+              </div>
+              <div className="dribble right">
+                <img src={dribble2} alt="" />
+              </div>
+            </div>
+            <div className="dribbleBack">
+              <h1>Back</h1>
             </div>
           </div>
-          <div className="recentWork left">
-            <div className="detail">
-              <div className="heading">
-                <h2>Project Name</h2>
-                </div>
-                <div className="keypoints">
-                <p>Project Keypoints</p>
-                </div>
-                <div className="projectDetail">
-                <button className="projectDetailBtn">View Project</button>
-                </div>
-            </div>
-            <div className="image">
-              <img src={projectImageThree} alt="" />
-            </div>
-          </div>
+        <div className="socialMain">
+        <Heading HT1="Join our" HT2={`Socials`}/>
         </div>
       </div>
-    </div>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
     </>
   )
 }
@@ -208,6 +364,6 @@ const LogoDiv = styled.div`
 `;
 const AboutTextDiv = styled.div`
   margin:0 auto;
-text-align:center;
+  text-align:center;
   width:40%;
 `;
