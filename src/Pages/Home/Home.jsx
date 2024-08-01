@@ -1,17 +1,105 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import logo from '../../Assets/Images/logo.png'
 import './Home.css';
 import styled from 'styled-components';
 import projectImageOne from '../../Assets/Images/loftloom-main-landscape.webp';
 import projectImageTwo from '../../Assets/Images/imusic-main-landscape.webp';
 import projectImageThree from '../../Assets/Images/technis-main-landscape.webp';
-import gsap from 'gsap/all';
+import gsap, { Draggable } from 'gsap/all';
 import introVideo from '../../Assets/Images/intro-video.mp4';
 import Heading from '../../Components/Heading/Heading';
 import Paragraph from '../../Components/Paragraph/Paragraph';
 import dribble1 from '../../Assets/Images/dribbble1.webp';
 import dribble2 from '../../Assets/Images/dribbble2.webp';
+import dribble3 from '../../Assets/Images/dribbble3.webp';
+import dribble4 from '../../Assets/Images/dribbble4.webp';
+import dribble5 from '../../Assets/Images/dribbble5.webp';
+import dribble6 from '../../Assets/Images/dribbble6.webp';
+import FluidCanvas from '../../Components/FluidCanvas/FluidCanvas';
+
+const Slide = ({ imageSource, content }) => {
+  return (
+    <div className="slide">
+      <div className="preview">
+        <img src={imageSource} alt="The Plant" draggable="false" />
+      </div>
+      <div className="infos">
+        <h3>{content.date}</h3>
+        <h2>{content.desc}</h2>
+      </div>
+    </div>
+  );
+};
+const pictures = [
+  {
+    source:
+      "https://images.unsplash.com/photo-1525498128493-380d1990a112?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80",
+    content: {
+      date: "04.29.2020",
+      desc: "Behind the leaves. "
+    }
+  },
+  {
+    source:
+      "https://images.unsplash.com/photo-1533038590840-1cde6e668a91?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80",
+    content: {
+      date: "04.28.2020",
+      desc: "Minimal eucalyptus leaves"
+    }
+  },
+  {
+    source:
+      "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1266&q=80",
+    content: {
+      date: "04.28.2020",
+      desc: "Rubber Plant"
+    }
+  },
+  {
+    source:
+      "https://images.unsplash.com/photo-1506543277633-99deabfcd722?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=623&q=80",
+    content: {
+      date: "04.27.2020",
+      desc: "Person holding leaf plant"
+    }
+  },
+  {
+    source:
+      "https://images.unsplash.com/photo-1512428813834-c702c7702b78?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80",
+    content: {
+      date: "04.23.2020",
+      desc: "Green leafed plant photography"
+    }
+  },
+  {
+    source:
+      "https://images.unsplash.com/photo-1517848568502-d03fa74e1964?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
+    content: {
+      date: "04.21.2020",
+      desc: "Gree leafed plant in focus photography"
+    }
+  },
+  {
+    source:
+      "https://images.unsplash.com/photo-1536882240095-0379873feb4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80",
+    content: {
+      date: "04.23.2020",
+      desc: "I took the shot at home with Sigma 105 mm"
+    }
+  },
+  {
+    source:
+      "https://images.unsplash.com/photo-1471086569966-db3eebc25a59?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+    content: {
+      date: "04.21.2020",
+      desc: "Cheese plant leaf in clear glass vase"
+    }
+  }
+];
+
+
 function Home() {
+  const sliderRef = useRef(null);
   useEffect(() => {
     const videoDiv = document.querySelector('.videoDiv');
   gsap.timeline({
@@ -117,31 +205,113 @@ function Home() {
       );
     });
     const dribblesDiv = document.querySelectorAll('.dribble');
-    dribblesDiv.forEach((section, index) => {
-      const direction = section.classList.contains('right') ? 80 : -80;
-      const rotate = section.classList.contains('right') ? 50 : -50;
-    
-      gsap.to(section, {
-        scrollTrigger: {
-          trigger: dribblesDiv[0],
-          start: 'top 50%',
-          end: `top 90%`, 
-          scrub: 4,
-          // markers: true,
-          id: `dribble`,
-          
-        },
-        xPercent: direction,
-        rotate: rotate,
-        ease:'power1.in',
-      });
-    });
-    gsap.to('.dribbleBack', {
+    gsap.to(dribblesDiv[0],{
       scrollTrigger: {
         trigger: dribblesDiv[0],
+        start: 'top 50%',
+        end: `top 90%`, 
+        scrub: 4,
+        // markers: true,
+        id: `dribble`,
+        
+      },
+      xPercent: -55,
+      rotate: -20,
+      ease:'power1.in',
+    });
+    gsap.to(dribblesDiv[2],{
+      scrollTrigger: {
+        trigger: dribblesDiv[0],
+        start: 'top 50%',
+        end: `top 90%`, 
+        scrub: 4,
+        // markers: true,
+        id: `dribble`,
+        
+      },
+      xPercent: -50,
+      rotate: -10,
+      ease:'power1.in',
+    });
+
+    gsap.to(dribblesDiv[1],{
+      scrollTrigger: {
+        trigger: dribblesDiv[1],
+        start: 'top 50%',
+        end: `top 90%`, 
+        scrub: 4,
+        // markers: true,
+        id: `dribble`,
+        
+      },
+      xPercent: 55,
+      rotate: 20,
+      ease:'power1.in',
+    });
+    gsap.to(dribblesDiv[3],{
+      scrollTrigger: {
+        trigger: dribblesDiv[1],
+        start: 'top 50%',
+        end: `top 90%`, 
+        scrub: 4,
+        // markers: true,
+        id: `dribble`,
+        
+      },
+      xPercent: 50,
+      rotate: 10,
+      ease:'power1.in',
+    });
+
+    gsap.to(dribblesDiv[4],{
+      scrollTrigger: {
+        trigger: dribblesDiv[0],
+        start: 'top 50%',
+        end: `top 90%`, 
+        scrub: 4,
+        // markers: true,
+        id: `dribble`,
+        
+      },
+      xPercent: -25,
+      rotate: -20,
+      ease:'power1.in',
+    });
+    gsap.to(dribblesDiv[5],{
+      scrollTrigger: {
+        trigger: dribblesDiv[1],
+        start: 'top 50%',
+        end: `top 90%`, 
+        scrub: 4,
+        // markers: true,
+        id: `dribble`,
+      },
+      xPercent: 25,
+      rotate: 10,
+      ease:'power1.in',
+    });
+    // dribblesDiv.forEach((section) => {
+    //   gsap.from(section, {
+    //     scrollTrigger: {
+    //       trigger: section,
+    //       start: 'top 70%',
+    //       end: `bottom top`, 
+    //       scrub: 2,
+    //       // markers: true,
+    //       id: `dribble`,
+          
+    //     },
+    //     xPercent: 0,
+    //     rotate: 0,
+    //     ease:'power1.in',
+    //   });
+    // });
+    gsap.to('.dribbleBack', {
+      scrollTrigger: {
+        trigger: dribblesDiv[2],
         start: '30% 100%',
         // end: 'bottom top', 
-        scrub: 10, 
+        scrub: 6, 
         // markers: true, 
         id: 'background-div',
       },
@@ -149,11 +319,41 @@ function Home() {
       // ease: 'power1.inOut', 
     });
    
-    
+    // console.log(sliderRef.current.clientWidth, sliderRef.current.innerWidth);
+    // Draggable.create(sliderRef.current, {
+    //   type: "x",
+    //   bounds: {
+    //     minX: -sliderRef.current.clientWidth + window.innerWidth * 0.88,
+    //     maxX: 0
+    //   }
+    // });
   }, []); 
+
+
+
+  const [active, setActive] = useState(false);
+  const linksRef = useRef([]);
+
+  useEffect(() => {
+    const handleMouseOver = () => setActive(true);
+    const handleMouseOut = () => setActive(false);
+
+    linksRef.current.forEach(link => {
+      link.addEventListener('mouseover', handleMouseOver);
+      link.addEventListener('mouseout', handleMouseOut);
+    });
+
+    // Cleanup event listeners on component unmount
+    return () => {
+      linksRef.current.forEach(link => {
+        link.removeEventListener('mouseover', handleMouseOver);
+        link.removeEventListener('mouseout', handleMouseOut);
+      });
+    };
+  }, []);
   return (
     <>
-    {/* <WebGLCanvas /> */}
+    {/* <FluidCanvas /> */}
       <div className="container">
         <HomeBanner>
             <HeadingDiv>
@@ -288,36 +488,33 @@ function Home() {
           </div>
         </div>
         </div>
-        {/* <div className="partnerLoveMain">
-            <Heading HT1="Partner" HT2="Love" />
-            <div id="slider" className="slider" ref={sliderRef}>
-              {pictures.map((item, index) => {
-                return (
-                  <Slide key={index} imageSource={item.source} content={item.content} />
-                );
-              })}
-            </div>
-        </div> */}
+        {/* <div id="slider" className="slider" ref={sliderRef}>
+      {pictures.map((item, index) => {
+        return (
+          <Slide key={index} imageSource={item.source} content={item.content} />
+        );
+      })}
+    </div> */}
       <div className="container">
         <div className="dribbleMain">
             <div className="dribbleDiv">
               <div className="dribble">
                 <img src={dribble1} alt="" />
               </div>
-              <div className="dribble right">
+              <div className="dribble">
                 <img src={dribble2} alt="" />
               </div>
               <div className="dribble">
-                <img src={dribble1} alt="" />
-              </div>
-              <div className="dribble right">
-                <img src={dribble2} alt="" />
+                <img src={dribble3} alt="" />
               </div>
               <div className="dribble">
-                <img src={dribble1} alt="" />
+                <img src={dribble4} alt="" />
               </div>
-              <div className="dribble right">
-                <img src={dribble2} alt="" />
+              <div className="dribble">
+                <img src={dribble5} alt="" />
+              </div>
+              <div className="dribble">
+                <img src={dribble6} alt="" />
               </div>
             </div>
             <div className="dribbleBack">
@@ -325,24 +522,51 @@ function Home() {
             </div>
           </div>
         <div className="socialMain">
-        <Heading HT1="Join our" HT2={`Socials`}/>
+          <Heading HT1="Heading" HT2="Text" TC={true} />
+          <div className={`socials ${active ? 'active' : ''}`}>
+            <a href="#" ref={el => linksRef.current[0] = el}>
+              <div className="social">
+                <div className="name">
+                  Name
+                </div>
+                <div className="logo">
+                  logo
+                </div>
+              </div>
+            </a>
+            <a href="#" ref={el => linksRef.current[1] = el}>
+              <div className="social">
+                <div className="name">
+                  Name
+                </div>
+                <div className="logo">
+                  logo
+                </div>
+              </div>
+            </a>
+            <a href="#" ref={el => linksRef.current[2] = el}>
+              <div className="social">
+                <div className="name">
+                  Name
+                </div>
+                <div className="logo">
+                  logo
+                </div>
+              </div>
+            </a>
+            <a href="#" ref={el => linksRef.current[3] = el}>
+              <div className="social">
+                <div className="name">
+                  Name
+                </div>
+                <div className="logo">
+                  logo
+                </div>
+              </div>
+            </a>
+          </div>
         </div>
       </div>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
     </>
   )
 }

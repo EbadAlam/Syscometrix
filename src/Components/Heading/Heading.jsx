@@ -2,7 +2,7 @@ import gsap from 'gsap/all';
 import React, { useEffect } from 'react';
 import './Heading.css';
 
-function Heading({HT1,HT2}) {
+function Heading({HT1,HT2,TC}) {
     useEffect(() => {
         const headings = document.querySelectorAll('.recentWorkHdDiv .animated-heading');
 
@@ -29,7 +29,7 @@ function Heading({HT1,HT2}) {
 
     return (
         <div className="recentWorkHdDiv">
-            <h1 className='animated-heading'>
+             <h1 className='animated-heading' style={TC ? { textAlign: 'center' } : {}}>
                 <span className='animated-heading-span-1'>{HT1}</span>
                 <span className='animated-heading-span-2'>{HT2}</span>
             </h1>
