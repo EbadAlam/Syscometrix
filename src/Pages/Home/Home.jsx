@@ -16,6 +16,7 @@ import dribble4 from '../../Assets/Images/dribbble4.webp';
 import dribble5 from '../../Assets/Images/dribbble5.webp';
 import dribble6 from '../../Assets/Images/dribbble6.webp';
 import FluidCanvas from '../../Components/FluidCanvas/FluidCanvas';
+import CustomCursor from '../../Components/Cursor/Cursor';
 
 const Slide = ({ imageSource, content }) => {
   return (
@@ -99,6 +100,16 @@ const pictures = [
 
 
 function Home() {
+  const [theme, setTheme] = useState('light');
+
+  useEffect(() => {
+    document.body.className = theme;
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
+  };
+
   const sliderRef = useRef(null);
   useEffect(() => {
     const videoDiv = document.querySelector('.videoDiv');
@@ -353,7 +364,11 @@ function Home() {
   }, []);
   return (
     <>
-    {/* <FluidCanvas /> */}
+    <FluidCanvas />
+    <CustomCursor />
+    <button onClick={toggleTheme}>
+          Switch to {theme === 'light' ? 'Dark' : 'Light'} Mode
+        </button>
       <div className="container">
         <HomeBanner>
             <HeadingDiv>
