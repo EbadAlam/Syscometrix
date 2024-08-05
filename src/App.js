@@ -5,7 +5,7 @@ import './App.css';
 function App() {
   gsap.registerPlugin(ScrollTrigger,Draggable);
   return (
-    <BrowserRouter>
+    <BrowserRouter  basename="/Syscometrix">
       <CustomRoutes />
     </BrowserRouter>
   );
