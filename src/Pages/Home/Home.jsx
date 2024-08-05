@@ -15,8 +15,7 @@ import dribble3 from '../../Assets/Images/dribbble3.webp';
 import dribble4 from '../../Assets/Images/dribbble4.webp';
 import dribble5 from '../../Assets/Images/dribbble5.webp';
 import dribble6 from '../../Assets/Images/dribbble6.webp';
-import FluidCanvas from '../../Components/FluidCanvas/FluidCanvas';
-import CustomCursor from '../../Components/Cursor/Cursor';
+import TestimonialSlider from '../../Components/Slider/Slider';
 
 const Slide = ({ imageSource, content }) => {
   return (
@@ -301,22 +300,6 @@ function Home() {
       rotate: 10,
       ease:'power1.in',
     });
-    // dribblesDiv.forEach((section) => {
-    //   gsap.from(section, {
-    //     scrollTrigger: {
-    //       trigger: section,
-    //       start: 'top 70%',
-    //       end: `bottom top`, 
-    //       scrub: 2,
-    //       // markers: true,
-    //       id: `dribble`,
-          
-    //     },
-    //     xPercent: 0,
-    //     rotate: 0,
-    //     ease:'power1.in',
-    //   });
-    // });
     gsap.to('.dribbleBack', {
       scrollTrigger: {
         trigger: dribblesDiv[2],
@@ -329,18 +312,66 @@ function Home() {
       yPercent: -70, 
       // ease: 'power1.inOut', 
     });
-   
-    // console.log(sliderRef.current.clientWidth, sliderRef.current.innerWidth);
-    // Draggable.create(sliderRef.current, {
-    //   type: "x",
-    //   bounds: {
-    //     minX: -sliderRef.current.clientWidth + window.innerWidth * 0.88,
-    //     maxX: 0
-    //   }
-    // });
+
+
+
+const slider1 = document.querySelector('.slider1');
+const slider2 = document.querySelector('.slider2');
+
+const duration = 50;
+const forwardTimeline1 = gsap.timeline({ repeat: -1, paused: true })
+  .fromTo(slider1, { xPercent: 25 }, { xPercent: -25, duration: duration, ease: 'linear' });
+
+const reverseTimeline1 = gsap.timeline({ repeat: -1, paused: true })
+  .fromTo(slider1, { xPercent: -25 }, { xPercent: 25, duration: duration, ease: 'linear' });
+
+const forwardTimeline2 = gsap.timeline({ repeat: -1, paused: true })
+  .fromTo(slider2, { xPercent: -25 }, { xPercent: 25, duration: duration, ease: 'linear' });
+
+const reverseTimeline2 = gsap.timeline({ repeat: -1, paused: true })
+  .fromTo(slider2, { xPercent: 25 }, { xPercent: -25, duration: duration, ease: 'linear' });
+
+let currentTimeline1 = forwardTimeline1;
+let currentTimeline2 = forwardTimeline2;
+
+const switchAnimations = (current, forward, reverse, direction) => {
+  const progress = current.progress();
+  current.pause();
+  const newTimeline = direction === 'forward' ? forward : reverse;
+  newTimeline.progress(1 - progress).play();
+  return newTimeline;
+};
+
+let lastScrollTop = 0;
+
+window.addEventListener('scroll', function() {
+  let st = window.pageYOffset || document.documentElement.scrollTop;
+  let direction = st > lastScrollTop ? 'forward' : 'reverse';
+
+  if (direction === 'forward') {
+    if (currentTimeline1 !== forwardTimeline1) {
+      currentTimeline1 = switchAnimations(currentTimeline1, forwardTimeline1, reverseTimeline1, direction);
+    }
+    if (currentTimeline2 !== forwardTimeline2) {
+      currentTimeline2 = switchAnimations(currentTimeline2, forwardTimeline2, reverseTimeline2, direction);
+    }
+  } else {
+    if (currentTimeline1 !== reverseTimeline1) {
+      currentTimeline1 = switchAnimations(currentTimeline1, forwardTimeline1, reverseTimeline1, direction);
+    }
+    if (currentTimeline2 !== reverseTimeline2) {
+      currentTimeline2 = switchAnimations(currentTimeline2, forwardTimeline2, reverseTimeline2, direction);
+    }
+  }
+
+  lastScrollTop = st <= 0 ? 0 : st;
+});
+
+currentTimeline1.play();
+currentTimeline2.play();
+
+
   }, []); 
-
-
 
   const [active, setActive] = useState(false);
   const linksRef = useRef([]);
@@ -362,13 +393,9 @@ function Home() {
       });
     };
   }, []);
+  
   return (
     <>
-    <FluidCanvas />
-    <CustomCursor />
-    <button onClick={toggleTheme}>
-          Switch to {theme === 'light' ? 'Dark' : 'Light'} Mode
-        </button>
       <div className="container">
         <HomeBanner>
             <HeadingDiv>
@@ -503,13 +530,89 @@ function Home() {
           </div>
         </div>
         </div>
-        {/* <div id="slider" className="slider" ref={sliderRef}>
-      {pictures.map((item, index) => {
-        return (
-          <Slide key={index} imageSource={item.source} content={item.content} />
-        );
-      })}
-    </div> */}
+    
+    <div className='testimonialSliderMain'>
+      <div className="container">
+        <Heading HT1="partner" HT2="love"/>
+        </div>
+        <TestimonialSlider testimonials={testimonials} />
+      </div>
+    <section className="autoSlider">
+        <div class="tiles">
+          <div class="tiles__line slider1">
+            <h1 className="tiles__line-img">—wild ideas!</h1>
+            <h1 className="tiles__line-img">—wild ideas!</h1>
+            <h1 className="tiles__line-img">—wild ideas!</h1>
+            <h1 className="tiles__line-img">—wild ideas!</h1>
+            <h1 className="tiles__line-img">—wild ideas!</h1>
+            <h1 className="tiles__line-img">—wild ideas!</h1>
+            <h1 className="tiles__line-img">—wild ideas!</h1>
+            <h1 className="tiles__line-img">—wild ideas!</h1>
+            <h1 className="tiles__line-img">—wild ideas!</h1>
+            <h1 className="tiles__line-img">—wild ideas!</h1>
+            <h1 className="tiles__line-img">—wild ideas!</h1>
+            <h1 className="tiles__line-img">—wild ideas!</h1>
+            <h1 className="tiles__line-img">—wild ideas!</h1>
+            <h1 className="tiles__line-img">—wild ideas!</h1>
+            <h1 className="tiles__line-img">—wild ideas!</h1>
+            <h1 className="tiles__line-img">—wild ideas!</h1>
+            <h1 className="tiles__line-img">—wild ideas!</h1>
+            <h1 className="tiles__line-img">—wild ideas!</h1>
+            <h1 className="tiles__line-img">—wild ideas!</h1>
+            <h1 className="tiles__line-img">—wild ideas!</h1>
+            <h1 className="tiles__line-img">—wild ideas!</h1>
+            <h1 className="tiles__line-img">—wild ideas!</h1>
+            <h1 className="tiles__line-img">—wild ideas!</h1>
+            <h1 className="tiles__line-img">—wild ideas!</h1>
+            <h1 className="tiles__line-img">—wild ideas!</h1>
+            <h1 className="tiles__line-img">—wild ideas!</h1>
+            <h1 className="tiles__line-img">—wild ideas!</h1>
+            <h1 className="tiles__line-img">—wild ideas!</h1>
+            <h1 className="tiles__line-img">—wild ideas!</h1>
+            <h1 className="tiles__line-img">—wild ideas!</h1>
+            <h1 className="tiles__line-img">—wild ideas!</h1>
+            <h1 className="tiles__line-img">—wild ideas!</h1>
+            <h1 className="tiles__line-img">—wild ideas!</h1>
+            <h1 className="tiles__line-img">—wild ideas!</h1>
+          </div>
+          <div class="tiles__line inverse slider2">
+            <h1 className="tiles__line-img">Let's Dive In!</h1>
+            <h1 className="tiles__line-img">Let's Dive In!</h1>
+            <h1 className="tiles__line-img">Let's Dive In!</h1>
+            <h1 className="tiles__line-img">Let's Dive In!</h1>
+            <h1 className="tiles__line-img">Let's Dive In!</h1>
+            <h1 className="tiles__line-img">Let's Dive In!</h1>
+            <h1 className="tiles__line-img">Let's Dive In!</h1>
+            <h1 className="tiles__line-img">Let's Dive In!</h1>
+            <h1 className="tiles__line-img">Let's Dive In!</h1>
+            <h1 className="tiles__line-img">Let's Dive In!</h1>
+            <h1 className="tiles__line-img">Let's Dive In!</h1>
+            <h1 className="tiles__line-img">Let's Dive In!</h1>
+            <h1 className="tiles__line-img">Let's Dive In!</h1>
+            <h1 className="tiles__line-img">Let's Dive In!</h1>
+            <h1 className="tiles__line-img">Let's Dive In!</h1>
+            <h1 className="tiles__line-img">Let's Dive In!</h1>
+            <h1 className="tiles__line-img">Let's Dive In!</h1>
+            <h1 className="tiles__line-img">Let's Dive In!</h1>
+            <h1 className="tiles__line-img">Let's Dive In!</h1>
+            <h1 className="tiles__line-img">Let's Dive In!</h1>
+            <h1 className="tiles__line-img">Let's Dive In!</h1>
+            <h1 className="tiles__line-img">Let's Dive In!</h1>
+            <h1 className="tiles__line-img">Let's Dive In!</h1>
+            <h1 className="tiles__line-img">Let's Dive In!</h1>
+            <h1 className="tiles__line-img">Let's Dive In!</h1>
+            <h1 className="tiles__line-img">Let's Dive In!</h1>
+            <h1 className="tiles__line-img">Let's Dive In!</h1>
+            <h1 className="tiles__line-img">Let's Dive In!</h1>
+            <h1 className="tiles__line-img">Let's Dive In!</h1>
+            <h1 className="tiles__line-img">Let's Dive In!</h1>
+            <h1 className="tiles__line-img">Let's Dive In!</h1>
+            <h1 className="tiles__line-img">Let's Dive In!</h1>
+            <h1 className="tiles__line-img">Let's Dive In!</h1>
+            <h1 className="tiles__line-img">Let's Dive In!</h1>
+          </div>
+        </div>
+      </section>
       <div className="container">
         <div className="dribbleMain">
             <div className="dribbleDiv">
@@ -582,10 +685,22 @@ function Home() {
           </div>
         </div>
       </div>
+      {/* <Slider slides={slides} /> */}
+      
     </>
   )
 }
-
+const testimonials = [
+  { quote: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minima non adipisci maiores tempore, tenetur vel voluptates dolorem, exercitationem sunt, laborum earum et quam illum error! Soluta quasi nihil quidem eligendi.", author: "John Doe", position: "CEO, Company A" },
+  { quote: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minima non adipisci maiores tempore, tenetur vel voluptates dolorem, exercitationem sunt, laborum earum et quam illum error! Soluta quasi nihil quidem eligendi.", author: "John Doe", position: "CEO, Company A" },
+  { quote: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minima non adipisci maiores tempore, tenetur vel voluptates dolorem, exercitationem sunt, laborum earum et quam illum error! Soluta quasi nihil quidem eligendi.", author: "John Doe", position: "CEO, Company A" },
+  { quote: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minima non adipisci maiores tempore, tenetur vel voluptates dolorem, exercitationem sunt, laborum earum et quam illum error! Soluta quasi nihil quidem eligendi.", author: "John Doe", position: "CEO, Company A" },
+  { quote: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minima non adipisci maiores tempore, tenetur vel voluptates dolorem, exercitationem sunt, laborum earum et quam illum error! Soluta quasi nihil quidem eligendi.", author: "John Doe", position: "CEO, Company A" },
+  { quote: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minima non adipisci maiores tempore, tenetur vel voluptates dolorem, exercitationem sunt, laborum earum et quam illum error! Soluta quasi nihil quidem eligendi.", author: "John Doe", position: "CEO, Company A" },
+  { quote: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minima non adipisci maiores tempore, tenetur vel voluptates dolorem, exercitationem sunt, laborum earum et quam illum error! Soluta quasi nihil quidem eligendi.", author: "John Doe", position: "CEO, Company A" },
+  { quote: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minima non adipisci maiores tempore, tenetur vel voluptates dolorem, exercitationem sunt, laborum earum et quam illum error! Soluta quasi nihil quidem eligendi.", author: "John Doe", position: "CEO, Company A" },
+  { quote: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minima non adipisci maiores tempore, tenetur vel voluptates dolorem, exercitationem sunt, laborum earum et quam illum error! Soluta quasi nihil quidem eligendi.", author: "John Doe", position: "CEO, Company A" },
+];
 export default Home
 
 const HomeBanner = styled.div`
