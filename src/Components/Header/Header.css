@@ -7,15 +7,19 @@
     box-sizing: border-box;
     border-bottom: 1px solid #00000026;
     height: 70px;
+    z-index: 1;
+    position: relative;
+    pointer-events: none;
 }
 .header .menu ul{
     display: flex;
     list-style:none;
     justify-content: center;
 }
-.header .menu ul li{
+.header .menu ul li {
     margin: 0px 10px;
     padding: 20px 5px;
+    pointer-events: auto;
 }
 .header .logo{
     width: 15%;
@@ -39,10 +43,10 @@
     font-weight: 600;
     text-decoration: none;
     padding: 14px 24px;
+    pointer-events: auto;
     border-radius: 4px;
 }
 .menu li a{
-    
     text-decoration: none;
     font-size: 18px;
     font-weight: 500;

@@ -1,377 +1,324 @@
-import React, { useEffect, useRef, useState } from 'react'
-import logo from '../../Assets/Images/logo.png'
-import './Home.css';
-import styled from 'styled-components';
-import projectImageOne from '../../Assets/Images/loftloom-main-landscape.webp';
-import projectImageTwo from '../../Assets/Images/imusic-main-landscape.webp';
-import projectImageThree from '../../Assets/Images/technis-main-landscape.webp';
-import gsap, { Draggable } from 'gsap/all';
-import introVideo from '../../Assets/Images/intro-video.mp4';
-import Heading from '../../Components/Heading/Heading';
-import Paragraph from '../../Components/Paragraph/Paragraph';
-import dribble1 from '../../Assets/Images/dribbble1.webp';
-import dribble2 from '../../Assets/Images/dribbble2.webp';
-import dribble3 from '../../Assets/Images/dribbble3.webp';
-import dribble4 from '../../Assets/Images/dribbble4.webp';
-import dribble5 from '../../Assets/Images/dribbble5.webp';
-import dribble6 from '../../Assets/Images/dribbble6.webp';
-import TestimonialSlider from '../../Components/Slider/Slider';
-
-const Slide = ({ imageSource, content }) => {
-  return (
-    <div className="slide">
-      <div className="preview">
-        <img src={imageSource} alt="The Plant" draggable="false" />
-      </div>
-      <div className="infos">
-        <h3>{content.date}</h3>
-        <h2>{content.desc}</h2>
-      </div>
-    </div>
-  );
-};
-const pictures = [
-  {
-    source:
-      "https://images.unsplash.com/photo-1525498128493-380d1990a112?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80",
-    content: {
-      date: "04.29.2020",
-      desc: "Behind the leaves. "
-    }
-  },
-  {
-    source:
-      "https://images.unsplash.com/photo-1533038590840-1cde6e668a91?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80",
-    content: {
-      date: "04.28.2020",
-      desc: "Minimal eucalyptus leaves"
-    }
-  },
-  {
-    source:
-      "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1266&q=80",
-    content: {
-      date: "04.28.2020",
-      desc: "Rubber Plant"
-    }
-  },
-  {
-    source:
-      "https://images.unsplash.com/photo-1506543277633-99deabfcd722?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=623&q=80",
-    content: {
-      date: "04.27.2020",
-      desc: "Person holding leaf plant"
-    }
-  },
-  {
-    source:
-      "https://images.unsplash.com/photo-1512428813834-c702c7702b78?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80",
-    content: {
-      date: "04.23.2020",
-      desc: "Green leafed plant photography"
-    }
-  },
-  {
-    source:
-      "https://images.unsplash.com/photo-1517848568502-d03fa74e1964?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
-    content: {
-      date: "04.21.2020",
-      desc: "Gree leafed plant in focus photography"
-    }
-  },
-  {
-    source:
-      "https://images.unsplash.com/photo-1536882240095-0379873feb4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80",
-    content: {
-      date: "04.23.2020",
-      desc: "I took the shot at home with Sigma 105 mm"
-    }
-  },
-  {
-    source:
-      "https://images.unsplash.com/photo-1471086569966-db3eebc25a59?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-    content: {
-      date: "04.21.2020",
-      desc: "Cheese plant leaf in clear glass vase"
-    }
-  }
-];
-
+import React, { useEffect, useRef, useState } from "react";
+import logo from "../../Assets/Images/logo.png";
+import "./Home.css";
+import styled from "styled-components";
+import projectImageOne from "../../Assets/Images/loftloom-main-landscape.webp";
+import projectImageTwo from "../../Assets/Images/imusic-main-landscape.webp";
+import projectImageThree from "../../Assets/Images/technis-main-landscape.webp";
+import gsap from "gsap/all";
+import introVideo from "../../Assets/Images/intro-video.mp4";
+import Heading from "../../Components/Heading/Heading";
+import Paragraph from "../../Components/Paragraph/Paragraph";
+import dribble1 from "../../Assets/Images/dribbble1.webp";
+import dribble2 from "../../Assets/Images/dribbble2.webp";
+import dribble3 from "../../Assets/Images/dribbble3.webp";
+import dribble4 from "../../Assets/Images/dribbble4.webp";
+import dribble5 from "../../Assets/Images/dribbble5.webp";
+import dribble6 from "../../Assets/Images/dribbble6.webp";
+import TestimonialSlider from "../../Components/Slider/Slider";
 
 function Home() {
-  const [theme, setTheme] = useState('light');
-
   useEffect(() => {
-    document.body.className = theme;
-  }, [theme]);
-
-  const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
-  };
-
-  const sliderRef = useRef(null);
-  useEffect(() => {
-    const videoDiv = document.querySelector('.videoDiv');
-  gsap.timeline({
-    scrollTrigger: {
-      trigger: videoDiv,
-      start: 'top 75%', 
-      end: '+=100vh',
-      scrub: 2,
-      // pin: true, 
-      // markers: true ,
-      id:'video',
-    }
-  })
-  .fromTo(videoDiv.querySelector('video'), 
-  { 
-    width: '13%', 
-    borderRadius:'100rem'
-  },
-    { 
-      width: '80%', 
-      borderRadius:'10rem',
-    }
-  );
-    document.querySelectorAll('.recentWork').forEach((section) => {
-      const image = section.querySelector('.image');
-      const detail = section.querySelector('.detail');
-      const direction = section.classList.contains('right') ? -80 : 80;
-      const rotate = section.classList.contains('right') ? -15 : 15;
-
-      gsap.timeline({
+    const videoDiv = document.querySelector(".videoDiv");
+    gsap
+      .timeline({
         scrollTrigger: {
-          trigger: section,
-          start: '-200px 100%',
-          end: 'bottom 90%',
+          trigger: videoDiv,
+          start: "top 75%",
+          end: "+=100vh",
           scrub: 2,
-          // markers: true,
-          id: 'mm',
-        }
+          // pin: true,
+          // markers: true ,
+          id: "video",
+        },
       })
-      .fromTo(image,
+      .fromTo(
+        videoDiv.querySelector("video"),
         {
-          xPercent: direction,
-          rotate: rotate
+          width: "13%",
+          borderRadius: "100rem",
         },
         {
-          xPercent: 0,
-          rotate: 0,
-          duration: 1
-        },
-        '<'
-      )
-      .fromTo(detail,
-        {
-          yPercent: 150,
-          opacity: 0
-        },
-        {
-          yPercent: 0,
-          opacity: 1,
-          duration: 1
-        },
-        '<'
+          width: "80%",
+          borderRadius: "10rem",
+        }
       );
+    document.querySelectorAll(".recentWork").forEach((section) => {
+      const image = section.querySelector(".image");
+      const detail = section.querySelector(".detail");
+      const direction = section.classList.contains("right") ? -80 : 80;
+      const rotate = section.classList.contains("right") ? -15 : 15;
+
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: section,
+            start: "-200px 100%",
+            end: "bottom 90%",
+            scrub: 2,
+            // markers: true,
+            id: "mm",
+          },
+        })
+        .fromTo(
+          image,
+          {
+            xPercent: direction,
+            rotate: rotate,
+          },
+          {
+            xPercent: 0,
+            rotate: 0,
+            duration: 1,
+          },
+          "<"
+        )
+        .fromTo(
+          detail,
+          {
+            yPercent: 150,
+            opacity: 0,
+          },
+          {
+            yPercent: 0,
+            opacity: 1,
+            duration: 1,
+          },
+          "<"
+        );
     });
 
-    document.querySelectorAll('.whoWeAre').forEach((section) => {
-      const direction = section.classList.contains('right') ? -50 : 50;
-      const rotate = section.classList.contains('right') ? -50 : 50;
+    document.querySelectorAll(".whoWeAre").forEach((section) => {
+      const direction = section.classList.contains("right") ? -50 : 50;
+      const rotate = section.classList.contains("right") ? -50 : 50;
 
-      gsap.timeline({
-        scrollTrigger: {
-          trigger: section,
-          start: 'top 100%',
-          end: 'top 90%',
-          scrub: 4,
-          // markers: true,
-          id: 'services',
-        }
-      })
-      .fromTo(section,
-        {
-          xPercent: direction,
-          rotate: rotate
-        },
-        {
-          xPercent: 0,
-          rotate: 0,
-          duration: 2
-        },
-        '<'
-      )
-      .fromTo(section,
-        {
-          yPercent: 150,
-          opacity: 0
-        },
-        {
-          yPercent: 0,
-          opacity: 1,
-          duration: 2
-        },
-        '<'
-      );
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: section,
+            start: "top 100%",
+            end: "top 90%",
+            scrub: 4,
+            // markers: true,
+            id: "services",
+          },
+        })
+        .fromTo(
+          section,
+          {
+            xPercent: direction,
+            rotate: rotate,
+          },
+          {
+            xPercent: 0,
+            rotate: 0,
+            duration: 2,
+          },
+          "<"
+        )
+        .fromTo(
+          section,
+          {
+            yPercent: 150,
+            opacity: 0,
+          },
+          {
+            yPercent: 0,
+            opacity: 1,
+            duration: 2,
+          },
+          "<"
+        );
     });
-    const dribblesDiv = document.querySelectorAll('.dribble');
-    gsap.to(dribblesDiv[0],{
+    const dribblesDiv = document.querySelectorAll(".dribble");
+    gsap.to(dribblesDiv[0], {
       scrollTrigger: {
         trigger: dribblesDiv[0],
-        start: 'top 50%',
-        end: `top 90%`, 
+        start: "top 50%",
+        end: `top 90%`,
         scrub: 4,
         // markers: true,
         id: `dribble`,
-        
       },
       xPercent: -55,
       rotate: -20,
-      ease:'power1.in',
+      ease: "power1.in",
     });
-    gsap.to(dribblesDiv[2],{
+    gsap.to(dribblesDiv[2], {
       scrollTrigger: {
         trigger: dribblesDiv[0],
-        start: 'top 50%',
-        end: `top 90%`, 
+        start: "top 50%",
+        end: `top 90%`,
         scrub: 4,
         // markers: true,
         id: `dribble`,
-        
       },
       xPercent: -50,
       rotate: -10,
-      ease:'power1.in',
+      ease: "power1.in",
     });
 
-    gsap.to(dribblesDiv[1],{
+    gsap.to(dribblesDiv[1], {
       scrollTrigger: {
         trigger: dribblesDiv[1],
-        start: 'top 50%',
-        end: `top 90%`, 
+        start: "top 50%",
+        end: `top 90%`,
         scrub: 4,
         // markers: true,
         id: `dribble`,
-        
       },
       xPercent: 55,
       rotate: 20,
-      ease:'power1.in',
+      ease: "power1.in",
     });
-    gsap.to(dribblesDiv[3],{
+    gsap.to(dribblesDiv[3], {
       scrollTrigger: {
         trigger: dribblesDiv[1],
-        start: 'top 50%',
-        end: `top 90%`, 
+        start: "top 50%",
+        end: `top 90%`,
         scrub: 4,
         // markers: true,
         id: `dribble`,
-        
       },
       xPercent: 50,
       rotate: 10,
-      ease:'power1.in',
+      ease: "power1.in",
     });
 
-    gsap.to(dribblesDiv[4],{
+    gsap.to(dribblesDiv[4], {
       scrollTrigger: {
         trigger: dribblesDiv[0],
-        start: 'top 50%',
-        end: `top 90%`, 
+        start: "top 50%",
+        end: `top 90%`,
         scrub: 4,
         // markers: true,
         id: `dribble`,
-        
       },
       xPercent: -25,
       rotate: -20,
-      ease:'power1.in',
+      ease: "power1.in",
     });
-    gsap.to(dribblesDiv[5],{
+    gsap.to(dribblesDiv[5], {
       scrollTrigger: {
         trigger: dribblesDiv[1],
-        start: 'top 50%',
-        end: `top 90%`, 
+        start: "top 50%",
+        end: `top 90%`,
         scrub: 4,
         // markers: true,
         id: `dribble`,
       },
       xPercent: 25,
       rotate: 10,
-      ease:'power1.in',
+      ease: "power1.in",
     });
-    gsap.to('.dribbleBack', {
+    gsap.to(".dribbleBack", {
       scrollTrigger: {
         trigger: dribblesDiv[2],
-        start: '30% 100%',
-        // end: 'bottom top', 
-        scrub: 6, 
-        // markers: true, 
-        id: 'background-div',
+        start: "30% 100%",
+        // end: 'bottom top',
+        scrub: 6,
+        // markers: true,
+        id: "background-div",
       },
-      yPercent: -70, 
-      // ease: 'power1.inOut', 
+      yPercent: -70,
+      // ease: 'power1.inOut',
     });
 
+    const slider1 = document.querySelector(".slider1");
+    const slider2 = document.querySelector(".slider2");
 
+    const duration = 50;
+    const forwardTimeline1 = gsap
+      .timeline({ repeat: -1, paused: true })
+      .fromTo(
+        slider1,
+        { xPercent: 25 },
+        { xPercent: -25, duration: duration, ease: "linear" }
+      );
 
-const slider1 = document.querySelector('.slider1');
-const slider2 = document.querySelector('.slider2');
+    const reverseTimeline1 = gsap
+      .timeline({ repeat: -1, paused: true })
+      .fromTo(
+        slider1,
+        { xPercent: -25 },
+        { xPercent: 25, duration: duration, ease: "linear" }
+      );
 
-const duration = 50;
-const forwardTimeline1 = gsap.timeline({ repeat: -1, paused: true })
-  .fromTo(slider1, { xPercent: 25 }, { xPercent: -25, duration: duration, ease: 'linear' });
+    const forwardTimeline2 = gsap
+      .timeline({ repeat: -1, paused: true })
+      .fromTo(
+        slider2,
+        { xPercent: -25 },
+        { xPercent: 25, duration: duration, ease: "linear" }
+      );
 
-const reverseTimeline1 = gsap.timeline({ repeat: -1, paused: true })
-  .fromTo(slider1, { xPercent: -25 }, { xPercent: 25, duration: duration, ease: 'linear' });
+    const reverseTimeline2 = gsap
+      .timeline({ repeat: -1, paused: true })
+      .fromTo(
+        slider2,
+        { xPercent: 25 },
+        { xPercent: -25, duration: duration, ease: "linear" }
+      );
 
-const forwardTimeline2 = gsap.timeline({ repeat: -1, paused: true })
-  .fromTo(slider2, { xPercent: -25 }, { xPercent: 25, duration: duration, ease: 'linear' });
+    let currentTimeline1 = forwardTimeline1;
+    let currentTimeline2 = forwardTimeline2;
 
-const reverseTimeline2 = gsap.timeline({ repeat: -1, paused: true })
-  .fromTo(slider2, { xPercent: 25 }, { xPercent: -25, duration: duration, ease: 'linear' });
+    const switchAnimations = (current, forward, reverse, direction) => {
+      const progress = current.progress();
+      current.pause();
+      const newTimeline = direction === "forward" ? forward : reverse;
+      newTimeline.progress(1 - progress).play();
+      return newTimeline;
+    };
 
-let currentTimeline1 = forwardTimeline1;
-let currentTimeline2 = forwardTimeline2;
+    let lastScrollTop = 0;
 
-const switchAnimations = (current, forward, reverse, direction) => {
-  const progress = current.progress();
-  current.pause();
-  const newTimeline = direction === 'forward' ? forward : reverse;
-  newTimeline.progress(1 - progress).play();
-  return newTimeline;
-};
+    window.addEventListener("scroll", function () {
+      let st = window.pageYOffset || document.documentElement.scrollTop;
+      let direction = st > lastScrollTop ? "forward" : "reverse";
 
-let lastScrollTop = 0;
+      if (direction === "forward") {
+        if (currentTimeline1 !== forwardTimeline1) {
+          currentTimeline1 = switchAnimations(
+            currentTimeline1,
+            forwardTimeline1,
+            reverseTimeline1,
+            direction
+          );
+        }
+        if (currentTimeline2 !== forwardTimeline2) {
+          currentTimeline2 = switchAnimations(
+            currentTimeline2,
+            forwardTimeline2,
+            reverseTimeline2,
+            direction
+          );
+        }
+      } else {
+        if (currentTimeline1 !== reverseTimeline1) {
+          currentTimeline1 = switchAnimations(
+            currentTimeline1,
+            forwardTimeline1,
+            reverseTimeline1,
+            direction
+          );
+        }
+        if (currentTimeline2 !== reverseTimeline2) {
+          currentTimeline2 = switchAnimations(
+            currentTimeline2,
+            forwardTimeline2,
+            reverseTimeline2,
+            direction
+          );
+        }
+      }
 
-window.addEventListener('scroll', function() {
-  let st = window.pageYOffset || document.documentElement.scrollTop;
-  let direction = st > lastScrollTop ? 'forward' : 'reverse';
+      lastScrollTop = st <= 0 ? 0 : st;
+    });
 
-  if (direction === 'forward') {
-    if (currentTimeline1 !== forwardTimeline1) {
-      currentTimeline1 = switchAnimations(currentTimeline1, forwardTimeline1, reverseTimeline1, direction);
-    }
-    if (currentTimeline2 !== forwardTimeline2) {
-      currentTimeline2 = switchAnimations(currentTimeline2, forwardTimeline2, reverseTimeline2, direction);
-    }
-  } else {
-    if (currentTimeline1 !== reverseTimeline1) {
-      currentTimeline1 = switchAnimations(currentTimeline1, forwardTimeline1, reverseTimeline1, direction);
-    }
-    if (currentTimeline2 !== reverseTimeline2) {
-      currentTimeline2 = switchAnimations(currentTimeline2, forwardTimeline2, reverseTimeline2, direction);
-    }
-  }
-
-  lastScrollTop = st <= 0 ? 0 : st;
-});
-
-currentTimeline1.play();
-currentTimeline2.play();
-
-
-  }, []); 
+    currentTimeline1.play();
+    currentTimeline2.play();
+  }, []);
 
   const [active, setActive] = useState(false);
   const linksRef = useRef([]);
@@ -380,60 +327,58 @@ currentTimeline2.play();
     const handleMouseOver = () => setActive(true);
     const handleMouseOut = () => setActive(false);
 
-    linksRef.current.forEach(link => {
-      link.addEventListener('mouseover', handleMouseOver);
-      link.addEventListener('mouseout', handleMouseOut);
+    linksRef.current.forEach((link) => {
+      link.addEventListener("mouseover", handleMouseOver);
+      link.addEventListener("mouseout", handleMouseOut);
     });
 
-    // Cleanup event listeners on component unmount
     return () => {
-      linksRef.current.forEach(link => {
-        link.removeEventListener('mouseover', handleMouseOver);
-        link.removeEventListener('mouseout', handleMouseOut);
-      });
+      // linksRef.current.forEach((link) => {
+      //   link.removeEventListener("mouseover", handleMouseOver);
+      //   link.removeEventListener("mouseout", handleMouseOut);
+      // });
     };
   }, []);
-  
+
   return (
     <>
       <div className="container">
         <HomeBanner>
-            <HeadingDiv>
-              <h3>We Are</h3>
-            </HeadingDiv>
-            <LogoDiv>
-              <img src={logo} style={{width:'100%'}} alt="" />
-            </LogoDiv>
-            <AboutTextDiv>
-              <p>We founded our company in 2010 and have since evolved into a prominent US-based web design and development business, serving thousands of clients.</p>
-            </AboutTextDiv>
-            <div className="videoDiv">
-              <video
-                width="100%"       
-                autoPlay          
-                muted              
-                loop               
-              >
-                <source src={introVideo} type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-            </div>
+          <HeadingDiv>
+            <h3>We Are</h3>
+          </HeadingDiv>
+          <LogoDiv>
+            <img src={logo} style={{ width: "100%" }} alt="" />
+          </LogoDiv>
+          <AboutTextDiv>
+            <p>
+              We founded our company in 2010 and have since evolved into a
+              prominent US-based web design and development business, serving
+              thousands of clients.
+            </p>
+          </AboutTextDiv>
+          <div className="videoDiv">
+            <video width="100%" autoPlay muted loop>
+              <source src={introVideo} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
         </HomeBanner>
         <div className="recentWorkMain">
-        <Heading HT1={`Apps We`} HT2={`Built`}/>
-        <Paragraph text="Lorem ipsum dolor sit amet consectetur" />
+          <Heading HT1="Apps We" HT2="Built" />
+          <Paragraph text="Lorem ipsum dolor sit amet consectetur" />
           <div className="recentWorks">
             <div className="recentWork left">
               <div className="detail">
                 <div className="heading">
                   <h2>Project Name</h2>
-                  </div>
-                  <div className="keypoints">
+                </div>
+                <div className="keypoints">
                   <p>Project Keypoints</p>
-                  </div>
-                  <div className="projectDetail">
+                </div>
+                <div className="projectDetail">
                   <button className="projectDetailBtn">View Project</button>
-                  </div>
+                </div>
               </div>
               <div className="image">
                 <img src={projectImageOne} alt="" />
@@ -443,13 +388,13 @@ currentTimeline2.play();
               <div className="detail">
                 <div className="heading">
                   <h2>Project Name</h2>
-                  </div>
-                  <div className="keypoints">
+                </div>
+                <div className="keypoints">
                   <p>Project Keypoints</p>
-                  </div>
-                  <div className="projectDetail">
+                </div>
+                <div className="projectDetail">
                   <button className="projectDetailBtn">View Project</button>
-                  </div>
+                </div>
               </div>
               <div className="image">
                 <img src={projectImageTwo} alt="" />
@@ -459,13 +404,13 @@ currentTimeline2.play();
               <div className="detail">
                 <div className="heading">
                   <h2>Project Name</h2>
-                  </div>
-                  <div className="keypoints">
+                </div>
+                <div className="keypoints">
                   <p>Project Keypoints</p>
-                  </div>
-                  <div className="projectDetail">
+                </div>
+                <div className="projectDetail">
                   <button className="projectDetailBtn">View Project</button>
-                  </div>
+                </div>
               </div>
               <div className="image">
                 <img src={projectImageThree} alt="" />
@@ -475,7 +420,7 @@ currentTimeline2.play();
         </div>
         <div className="whoWeAreMain">
           <div className="headingText">
-            <Heading HT1={`Who`} HT2={`We Are`}/>
+            <Heading HT1={`Who`} HT2={`We Are`} />
             <Paragraph text="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Itaque inventore magni et, similique placeat deserunt quam ipsam, corporis ad dicta commodi eveniet" />
           </div>
           <div className="whoeWeAreDiv">
@@ -529,15 +474,15 @@ currentTimeline2.play();
             </div>
           </div>
         </div>
-        </div>
-    
-    <div className='testimonialSliderMain'>
-      <div className="container">
-        <Heading HT1="partner" HT2="love"/>
+      </div>
+
+      <div className="testimonialSliderMain">
+        <div className="container">
+          <Heading HT1="partner" HT2="love" />
         </div>
         <TestimonialSlider testimonials={testimonials} />
       </div>
-    <section className="autoSlider">
+      <section className="autoSlider">
         <div class="tiles">
           <div class="tiles__line slider1">
             <h1 className="tiles__line-img">—wild ideas!</h1>
@@ -615,109 +560,136 @@ currentTimeline2.play();
       </section>
       <div className="container">
         <div className="dribbleMain">
-            <div className="dribbleDiv">
-              <div className="dribble">
-                <img src={dribble1} alt="" />
-              </div>
-              <div className="dribble">
-                <img src={dribble2} alt="" />
-              </div>
-              <div className="dribble">
-                <img src={dribble3} alt="" />
-              </div>
-              <div className="dribble">
-                <img src={dribble4} alt="" />
-              </div>
-              <div className="dribble">
-                <img src={dribble5} alt="" />
-              </div>
-              <div className="dribble">
-                <img src={dribble6} alt="" />
-              </div>
+          <div className="dribbleDiv">
+            <div className="dribble">
+              <img src={dribble1} alt="" />
             </div>
-            <div className="dribbleBack">
-              <h1>Back</h1>
+            <div className="dribble">
+              <img src={dribble2} alt="" />
+            </div>
+            <div className="dribble">
+              <img src={dribble3} alt="" />
+            </div>
+            <div className="dribble">
+              <img src={dribble4} alt="" />
+            </div>
+            <div className="dribble">
+              <img src={dribble5} alt="" />
+            </div>
+            <div className="dribble">
+              <img src={dribble6} alt="" />
             </div>
           </div>
+          <div className="dribbleBack">
+            <h1>Back</h1>
+          </div>
+        </div>
         <div className="socialMain">
           <Heading HT1="Heading" HT2="Text" TC={true} />
-          <div className={`socials ${active ? 'active' : ''}`}>
-            <a href="#" ref={el => linksRef.current[0] = el}>
+          <div className={`socials ${active ? "active" : ""}`}>
+            <a href="#" ref={(el) => (linksRef.current[0] = el)}>
               <div className="social">
-                <div className="name">
-                  Name
-                </div>
-                <div className="logo">
-                  logo
-                </div>
+                <div className="name">Name</div>
+                <div className="logo">logo</div>
               </div>
             </a>
-            <a href="#" ref={el => linksRef.current[1] = el}>
+            <a href="#" ref={(el) => (linksRef.current[1] = el)}>
               <div className="social">
-                <div className="name">
-                  Name
-                </div>
-                <div className="logo">
-                  logo
-                </div>
+                <div className="name">Name</div>
+                <div className="logo">logo</div>
               </div>
             </a>
-            <a href="#" ref={el => linksRef.current[2] = el}>
+            <a href="#" ref={(el) => (linksRef.current[2] = el)}>
               <div className="social">
-                <div className="name">
-                  Name
-                </div>
-                <div className="logo">
-                  logo
-                </div>
+                <div className="name">Name</div>
+                <div className="logo">logo</div>
               </div>
             </a>
-            <a href="#" ref={el => linksRef.current[3] = el}>
+            <a href="#" ref={(el) => (linksRef.current[3] = el)}>
               <div className="social">
-                <div className="name">
-                  Name
-                </div>
-                <div className="logo">
-                  logo
-                </div>
+                <div className="name">Name</div>
+                <div className="logo">logo</div>
               </div>
             </a>
           </div>
         </div>
       </div>
-      {/* <Slider slides={slides} /> */}
-      
     </>
-  )
+  );
 }
 const testimonials = [
-  { quote: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minima non adipisci maiores tempore, tenetur vel voluptates dolorem, exercitationem sunt, laborum earum et quam illum error! Soluta quasi nihil quidem eligendi.", author: "John Doe", position: "CEO, Company A" },
-  { quote: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minima non adipisci maiores tempore, tenetur vel voluptates dolorem, exercitationem sunt, laborum earum et quam illum error! Soluta quasi nihil quidem eligendi.", author: "John Doe", position: "CEO, Company A" },
-  { quote: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minima non adipisci maiores tempore, tenetur vel voluptates dolorem, exercitationem sunt, laborum earum et quam illum error! Soluta quasi nihil quidem eligendi.", author: "John Doe", position: "CEO, Company A" },
-  { quote: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minima non adipisci maiores tempore, tenetur vel voluptates dolorem, exercitationem sunt, laborum earum et quam illum error! Soluta quasi nihil quidem eligendi.", author: "John Doe", position: "CEO, Company A" },
-  { quote: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minima non adipisci maiores tempore, tenetur vel voluptates dolorem, exercitationem sunt, laborum earum et quam illum error! Soluta quasi nihil quidem eligendi.", author: "John Doe", position: "CEO, Company A" },
-  { quote: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minima non adipisci maiores tempore, tenetur vel voluptates dolorem, exercitationem sunt, laborum earum et quam illum error! Soluta quasi nihil quidem eligendi.", author: "John Doe", position: "CEO, Company A" },
-  { quote: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minima non adipisci maiores tempore, tenetur vel voluptates dolorem, exercitationem sunt, laborum earum et quam illum error! Soluta quasi nihil quidem eligendi.", author: "John Doe", position: "CEO, Company A" },
-  { quote: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minima non adipisci maiores tempore, tenetur vel voluptates dolorem, exercitationem sunt, laborum earum et quam illum error! Soluta quasi nihil quidem eligendi.", author: "John Doe", position: "CEO, Company A" },
-  { quote: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minima non adipisci maiores tempore, tenetur vel voluptates dolorem, exercitationem sunt, laborum earum et quam illum error! Soluta quasi nihil quidem eligendi.", author: "John Doe", position: "CEO, Company A" },
+  {
+    quote:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minima non adipisci maiores tempore, tenetur vel voluptates dolorem, exercitationem sunt, laborum earum et quam illum error! Soluta quasi nihil quidem eligendi.",
+    author: "John Doe",
+    position: "CEO, Company A",
+  },
+  {
+    quote:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minima non adipisci maiores tempore, tenetur vel voluptates dolorem, exercitationem sunt, laborum earum et quam illum error! Soluta quasi nihil quidem eligendi.",
+    author: "John Doe",
+    position: "CEO, Company A",
+  },
+  {
+    quote:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minima non adipisci maiores tempore, tenetur vel voluptates dolorem, exercitationem sunt, laborum earum et quam illum error! Soluta quasi nihil quidem eligendi.",
+    author: "John Doe",
+    position: "CEO, Company A",
+  },
+  {
+    quote:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minima non adipisci maiores tempore, tenetur vel voluptates dolorem, exercitationem sunt, laborum earum et quam illum error! Soluta quasi nihil quidem eligendi.",
+    author: "John Doe",
+    position: "CEO, Company A",
+  },
+  {
+    quote:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minima non adipisci maiores tempore, tenetur vel voluptates dolorem, exercitationem sunt, laborum earum et quam illum error! Soluta quasi nihil quidem eligendi.",
+    author: "John Doe",
+    position: "CEO, Company A",
+  },
+  {
+    quote:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minima non adipisci maiores tempore, tenetur vel voluptates dolorem, exercitationem sunt, laborum earum et quam illum error! Soluta quasi nihil quidem eligendi.",
+    author: "John Doe",
+    position: "CEO, Company A",
+  },
+  {
+    quote:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minima non adipisci maiores tempore, tenetur vel voluptates dolorem, exercitationem sunt, laborum earum et quam illum error! Soluta quasi nihil quidem eligendi.",
+    author: "John Doe",
+    position: "CEO, Company A",
+  },
+  {
+    quote:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minima non adipisci maiores tempore, tenetur vel voluptates dolorem, exercitationem sunt, laborum earum et quam illum error! Soluta quasi nihil quidem eligendi.",
+    author: "John Doe",
+    position: "CEO, Company A",
+  },
+  {
+    quote:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minima non adipisci maiores tempore, tenetur vel voluptates dolorem, exercitationem sunt, laborum earum et quam illum error! Soluta quasi nihil quidem eligendi.",
+    author: "John Doe",
+    position: "CEO, Company A",
+  },
 ];
-export default Home
+export default Home;
 
 const HomeBanner = styled.div`
-padding:5% 0;
-height:150vh;
-position:relative;
+  padding: 5% 0;
+  height: 150vh;
+  position: relative;
 `;
 const HeadingDiv = styled.div`
-text-align:center;
-font-size:40px;
+  text-align: center;
+  font-size: 40px;
 `;
 const LogoDiv = styled.div`
-  width:40%;
-  margin:0 auto;
+  width: 40%;
+  margin: 0 auto;
 `;
 const AboutTextDiv = styled.div`
-  margin:0 auto;
-  text-align:center;
-  width:40%;
+  margin: 0 auto;
+  text-align: center;
+  width: 40%;
 `;

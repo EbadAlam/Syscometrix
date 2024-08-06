@@ -58,8 +58,8 @@ function getWebGLContext(canvas) {
     supportLinearFiltering = gl.getExtension('OES_texture_half_float_linear');
   }
 
-  gl.clearColor(1.0, 1.0, 1.0, 1.0);
-//   gl.clearColor(0.0, 0.0, 0.0, 1.0);
+  // gl.clearColor(1.0, 1.0, 1.0, 1.0);  
+  gl.clearColor(0.0, 0.0, 0.0, 1.0);
 
   const halfFloatTexType = isWebGL2 ? gl.HALF_FLOAT : halfFloat.HALF_FLOAT_OES;
   let formatRGBA;
