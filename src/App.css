@@ -1,11 +1,28 @@
-*{
-    margin: 0px;
-    padding: 0px;
-    font-family: "Inter Tight", Sans-serif;
-    /* border:1px solid pink; */
-    /* overflow-x: hidden; */
-    /* background:transparent; */
-    /* color: white !important; */
+* {
+  margin: 0px;
+  padding: 0px;
+  font-family: "Inter Tight", Sans-serif;
+  /* border:1px solid pink; */
+  /* overflow-x: hidden; */
+  /* background:transparent; */
+  /* color: white !important; */
+}
+
+:root {
+  /* --text-color:black;
+  --bg-color:white;
+  --text-h-color:#f5f5f5;
+  --bg-h-color:#f5f5f5; */
+  --text-color:white;
+  --bg-color:black;
+  --text-h-color:black;
+  --bg-h-color:#141414;
+}
+body.theme-dark{
+  --text-color:white;
+  --bg-color:black;
+  --text-h-color:#141414;
+  --bg-h-color:#141414;
 }
 canvas {
   width: 100%;
@@ -13,41 +30,46 @@ canvas {
   position: fixed;
   z-index: 0;
 }
-.container{
+
+.container {
   pointer-events: none;
 }
-.socials, button {
+
+.socials,
+button {
   pointer-events: auto;
   z-index: 11;
   position: relative;
 }
-body{
-    overflow-x: hidden;
-}
-.container{
-    max-width: 80%;
-    margin: 0 auto;
-    /* z-index: 1; */
+
+body {
+  overflow-x: hidden;
 }
 
-h1,h2,h3,h4.h5,h6,p,span{
+.container {
+  max-width: 80%;
+  margin: 0 auto;
+  /* z-index: 1; */
+}
+
+h1,
+h2,
+h3,
+h4.h5,
+h6,
+p,
+span {
   z-index: 3;
   position: relative;
   /* pointer-events: auto; */
 }
-:root {
-    --bg-color-light: #ffffff;
-    --text-color-light: #000000;
-    --bg-color-dark: #333333;
-    --text-color-dark: #ffffff;
-  }
-  
-  body.light {
-    background-color: var(--bg-color-light);
-    color: var(--text-color-light);
-  }
-  
-  body.dark {
-    background-color: var(--bg-color-dark);
-    color: var(--text-color-dark);
-  }
+
+body.light {
+  background-color: var(--bg-color-light);
+  color: var(--text-color-light);
+}
+
+body.dark {
+  background-color: var(--bg-color-dark);
+  color: var(--text-color-dark);
+}

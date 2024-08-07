@@ -683,6 +683,7 @@ const HomeBanner = styled.div`
 const HeadingDiv = styled.div`
   text-align: center;
   font-size: 40px;
+  color:white;
 `;
 const LogoDiv = styled.div`
   width: 40%;

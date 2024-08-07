@@ -8,7 +8,7 @@ import CustomCursor from '../Cursor/Cursor';
 function Layout() {
   return (
     <>
-    {/* <FluidCanvas /> */}
+    <FluidCanvas />
     {/* <CustomCursor /> */}
       <HeaderWeb />
       <main>
