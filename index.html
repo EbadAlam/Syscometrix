@@ -1,3 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .tr__masking__primary img,.tr__masking__secondary img {
+            width: 100%;
+        }
+
+        .tr__masking__secondary {
+            --x: 0px;
+            --y: 0px;
+            --mask: radial-gradient(circle at var(--x) var(--y), #000 150px, transparent 300px);
+            -webkit-mask-image: var(--mask);
+            mask-image: var(--mask);
+            -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+        }
+
+        .tr__masking__primary,
+        .tr__masking__wrapper {
+            position: relative;
+        }
+
+        .tr__masking__primary img {
+            filter: brightness(0.2);
+        }
+        .tr__masking {
+            cursor: none;
+            cursor: url(./torch.png), auto;
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="tr__masking">
+    <div class="tr__masking__wrapper">
+        <div class="tr__masking__primary">
+           <img alt="Trionn" src="./lion.webp">
+        </div>
+        <div class="tr__masking__secondary" style="--y: 561px; --x: 892px;">
+           <img alt="Trionn" src="./lion.webp">
+        </div>
+    </div>
+</div>
+    <script>
+        const maskingElement = document.querySelector('.tr__masking__secondary');
+    
+        document.addEventListener('mousemove', (e) => {
+          const x = e.clientX;
+          const y = e.clientY;
+    
+          maskingElement.style.setProperty('--x', `${x}px`);
+          maskingElement.style.setProperty('--y', `${y}px`);
+        });
+      </script>
+</body>
+
+</html>
+
+
+
+
 <!-- <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -120,7 +197,7 @@ canvas.addEventListener('mousemove', function(event) {
 </html> -->
 
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -180,4 +257,4 @@ body, html {
 });
     </script>
 </body>
-</html>
+</html> -->

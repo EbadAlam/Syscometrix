@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import logo from "../../Assets/Images/logo.png";
+import logo from "../../Assets/Images/logo-white.png";
 import "./Home.css";
 import styled from "styled-components";
 import projectImageOne from "../../Assets/Images/loftloom-main-landscape.webp";
@@ -16,6 +16,7 @@ import dribble4 from "../../Assets/Images/dribbble4.webp";
 import dribble5 from "../../Assets/Images/dribbble5.webp";
 import dribble6 from "../../Assets/Images/dribbble6.webp";
 import TestimonialSlider from "../../Components/Slider/Slider";
+import CustomButton from "../../Components/CustomButton/CustomButton";
 
 function Home() {
   useEffect(() => {
@@ -377,7 +378,7 @@ function Home() {
                   <p>Project Keypoints</p>
                 </div>
                 <div className="projectDetail">
-                  <button className="projectDetailBtn">View Project</button>
+                  <CustomButton text="View Project" />
                 </div>
               </div>
               <div className="image">
@@ -393,7 +394,7 @@ function Home() {
                   <p>Project Keypoints</p>
                 </div>
                 <div className="projectDetail">
-                  <button className="projectDetailBtn">View Project</button>
+                  <CustomButton text="View Project" />
                 </div>
               </div>
               <div className="image">
@@ -409,7 +410,7 @@ function Home() {
                   <p>Project Keypoints</p>
                 </div>
                 <div className="projectDetail">
-                  <button className="projectDetailBtn">View Project</button>
+                  <CustomButton text="View Project" />
                 </div>
               </div>
               <div className="image">
@@ -456,7 +457,7 @@ function Home() {
                 <h3>serviceName</h3>
               </div>
             </div>
-            <div className="whoWeAre right">
+            {/* <div className="whoWeAre right">
               <div className="serviceIconDiv">
                 <h2>icon</h2>
               </div>
@@ -471,7 +472,7 @@ function Home() {
               <div className="serviceName">
                 <h3>serviceName</h3>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
@@ -688,6 +689,7 @@ const HeadingDiv = styled.div`
 const LogoDiv = styled.div`
   width: 40%;
   margin: 0 auto;
+  filter: invert(var(--FI-value));
 `;
 const AboutTextDiv = styled.div`
   margin: 0 auto;

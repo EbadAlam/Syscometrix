@@ -1,0 +1,39 @@
+.mask__primary img,.mask__secondary img {
+    width: 100%;
+}
+.mask__secondary {
+    --x: 0px;
+    --y: 0px;
+    --mask: radial-gradient(circle at var(--x) var(--y), #000 100px, transparent 250px);
+    /* --mask: radial-gradient(circle at var(--x) var(--y), transparent 100px, black 250px); */
+    /* --mask:var(--mask-value); */
+    -webkit-mask-image: var(--mask);
+    mask-image: var(--mask);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.mask__primary,
+.mask__wrapper {
+    position: relative;
+}
+
+.mask__primary img {
+    /* filter: brightness(0.4); */
+    opacity: var(--opacity-value);
+    filter: invert(var(--FI-value));
+
+}
+.mask {
+    cursor: none;
+    cursor: url('../../Assets/Images/torch.png'), auto;
+    position: relative;
+}
+.footerImg{
+    margin-top: 8%;
+}

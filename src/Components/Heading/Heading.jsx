@@ -29,7 +29,7 @@ function Heading({HT1,HT2,TC}) {
 
     return (
         <div className="recentWorkHdDiv">
-             <h1 className='animated-heading' style={TC ? { textAlign: 'center' } : {}}>
+             <h1 className='animated-heading' style={TC ? { textAlign: 'center' } : {textAlign:'left'}}>
                 <span className='animated-heading-span-1'>{HT1}</span>
                 <span className='animated-heading-span-2'>{HT2}</span>
             </h1>

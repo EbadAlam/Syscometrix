@@ -31,7 +31,7 @@
 }
 
 .detail .projectDetail{
-    margin-top: 30px;
+    margin-top: 45px;
 }
 .detail h2{
     font-size: 50px;
@@ -81,13 +81,16 @@
 
 .whoWeAre {
     width: 49%;
-    border: 1px solid var(--text-color);
+    /* border: 1px solid var(--text-color); */
+    background-color: var(--bg-h-color);
     padding: 40px;
     box-sizing: border-box;
     border-radius: 20px;
     height: 300px;
     display: flex;
     justify-content: space-between;
+    pointer-events: all;
+    transition: all .4s ease;
 }
 .whoWeAre:nth-child(even){
     margin-top: 100px;
@@ -102,6 +105,28 @@
     width: 70%;
     text-align: right;
     color: var(--text-color);
+}
+
+.whoWeAre:nth-child(1):hover{
+    background-color: #c63102;
+}
+.whoWeAre:nth-child(2):hover{
+    background-color: #c6cfcf;
+}
+.whoWeAre:nth-child(2):hover h2,.whoWeAre:nth-child(2):hover h3{
+    color: var(--text-h-color);
+}
+.whoWeAre:nth-child(3):hover{
+    background-color: #a1c9b8;
+}
+.whoWeAre:nth-child(3):hover h2,.whoWeAre:nth-child(3):hover h3{
+    color: var(--text-h-color);
+}
+.whoWeAre:nth-child(4):hover{
+    background-color: #b7ab36;
+}
+.whoWeAre:nth-child(4):hover h2,.whoWeAre:nth-child(4):hover h3{
+    color: var(--text-h-color);
 }
 .dribbleMain{
     position: relative;
@@ -271,6 +296,7 @@
 .testimonial-content h4 {
     font-size: 1.5em;
     margin-bottom: 5px;
+    color: var(--text-color);
 }
 
 .testimonial-content span {
