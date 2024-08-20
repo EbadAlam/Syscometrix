@@ -1,3 +1,25 @@
+.HomeBanner{
+    padding: 5% 0;
+    height: 150vh;
+    /* height: 72vw; */
+  position: relative;
+}
+.HeadingDiv{
+    text-align: center;
+  /* font-size: 40px; */
+  font-size: 2vw;
+  color:white;
+}
+.LogoDiv{
+    width: 40%;
+    margin: 0 auto;
+    filter: invert(var(--FI-value));
+}
+.AboutTextDiv{
+    margin: 0 auto;
+    text-align: center;
+    width: 40%;
+}
 .recentWork{
     display: flex;
     justify-content: space-between;

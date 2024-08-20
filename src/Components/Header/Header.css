@@ -22,10 +22,11 @@
     pointer-events: auto;
 }
 .header .logo{
-    width: 15%;
+    width: fit-content;
+    pointer-events: all;
 }
 .header .menu{
-    width: 60%;
+    /* width: 60%; */
 }
 
 .header .contactBtnDiv{

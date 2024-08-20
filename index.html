@@ -43,6 +43,23 @@
             cursor: url(./torch.png), auto;
             position: relative;
         }
+        .tr__masking__primary h3 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            color: white;
+            font-size: 100px;
+        }
+        
+        .tr__masking__secondary h3 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            color: transparent;
+            font-size: 100px;
+            -webkit-text-stroke-width: 1px;
+            -webkit-text-stroke-color: #fff;
+        }
     </style>
 </head>
 
@@ -51,9 +68,11 @@
     <div class="tr__masking__wrapper">
         <div class="tr__masking__primary">
            <img alt="Trionn" src="./lion.webp">
+           <h3>hello</h3>
         </div>
         <div class="tr__masking__secondary" style="--y: 561px; --x: 892px;">
-           <img alt="Trionn" src="./lion.webp">
+            <img alt="Trionn" src="./lion.webp">
+           <h3>hello</h3>
         </div>
     </div>
 </div>

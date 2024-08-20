@@ -3,11 +3,15 @@ import './Header.css';
 import logo from '../../Assets/Images/logo-white.png';
 import { RoutesConstant } from '../../Utils/Constant';
 import CustomButton from '../CustomButton/CustomButton';
+import Menu from '../Menu/Menu';
+import { NavLink } from 'react-router-dom';
 function HeaderWeb() {
   return (
-   <header className='header-web header'>
+   <header className='header-web header container'>
     <div className="logo">
+      <NavLink to='/'>
       <img src={logo} alt="Logo" />
+      </NavLink>
     </div>
     {/* <div className="menu">
       <ul>
@@ -27,7 +31,8 @@ function HeaderWeb() {
     </div> */}
     <div className="contactBtnDiv">
       {/* <NavLink className="contactBtn">Contact Us</NavLink> */}
-      <CustomButton text="Contact Us" />
+      {/* <CustomButton text="Contact Us" /> */}
+      {/* <Menu /> */}
     </div>
    </header>
   )

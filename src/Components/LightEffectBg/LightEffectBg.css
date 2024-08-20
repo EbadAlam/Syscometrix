@@ -34,6 +34,26 @@
     cursor: url('../../Assets/Images/torch.png'), auto;
     position: relative;
 }
+.content{
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%,50%);
+    width: 40%;
+    text-align: center;
+    text-transform: uppercase;
+}
+.mask__primary h2 {
+    color: var(--text-color);
+    font-size: 100px;
+}
+
+.mask__secondary h2 {
+    color: transparent;
+    font-size: 100px;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: var(--text-color);
+}
 .footerImg{
     margin-top: 8%;
 }

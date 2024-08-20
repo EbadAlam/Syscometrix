@@ -37,7 +37,7 @@ canvas {
 }
 
 .container {
-  pointer-events: none;
+  /* pointer-events: none; */
 }
 
 .socials,
@@ -65,7 +65,7 @@ h6,
 p,
 span {
   z-index: 3;
-  position: relative;
+  /* position: relative; */
   /* pointer-events: auto; */
 }
 

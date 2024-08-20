@@ -17,7 +17,8 @@ import dribble5 from "../../Assets/Images/dribbble5.webp";
 import dribble6 from "../../Assets/Images/dribbble6.webp";
 import TestimonialSlider from "../../Components/Slider/Slider";
 import CustomButton from "../../Components/CustomButton/CustomButton";
-
+import LightEffectBg from "../../Components/LightEffectBg/LightEffectBg";
+import texasImage from '../../Assets/Images/texas-state-resize.jpg';
 function Home() {
   useEffect(() => {
     const videoDiv = document.querySelector(".videoDiv");
@@ -40,7 +41,7 @@ function Home() {
           borderRadius: "100rem",
         },
         {
-          width: "80%",
+          width: "100%",
           borderRadius: "10rem",
         }
       );
@@ -343,28 +344,31 @@ function Home() {
 
   return (
     <>
+      <LightEffectBg image={texasImage} text="we are syscomatix" />
       <div className="container">
-        <HomeBanner>
-          <HeadingDiv>
+        <div className="HomeBanner">
+          <div className="HeadingDiv">
             <h3>We Are</h3>
-          </HeadingDiv>
-          <LogoDiv>
+          </div>
+          <div className="LogoDiv">
             <img src={logo} style={{ width: "100%" }} alt="" />
-          </LogoDiv>
-          <AboutTextDiv>
+          </div>
+          <div className="AboutTextDiv">
             <p>
               We founded our company in 2010 and have since evolved into a
               prominent US-based web design and development business, serving
               thousands of clients.
             </p>
-          </AboutTextDiv>
-          <div className="videoDiv">
+          </div>
+          
+        
+        <div className="videoDiv">
             <video width="100%" autoPlay muted loop>
               <source src={introVideo} type="video/mp4" />
               Your browser does not support the video tag.
             </video>
           </div>
-        </HomeBanner>
+        </div>
         <div className="recentWorkMain">
           <Heading HT1="Apps We" HT2="Built" />
           <Paragraph text="Lorem ipsum dolor sit amet consectetur" />
@@ -675,24 +679,3 @@ const testimonials = [
   },
 ];
 export default Home;
-
-const HomeBanner = styled.div`
-  padding: 5% 0;
-  height: 150vh;
-  position: relative;
-`;
-const HeadingDiv = styled.div`
-  text-align: center;
-  font-size: 40px;
-  color:white;
-`;
-const LogoDiv = styled.div`
-  width: 40%;
-  margin: 0 auto;
-  filter: invert(var(--FI-value));
-`;
-const AboutTextDiv = styled.div`
-  margin: 0 auto;
-  text-align: center;
-  width: 40%;
-`;

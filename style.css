@@ -1,0 +1,539 @@
+.mt{
+    margin-top: 50px;
+}
+/* swithc 1 */
+.switch {
+    font-size: 17px;
+    position: relative;
+    display: inline-block;
+    width: 64px;
+    height: 34px;
+  }
+  
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #73C0FC;
+    transition: .4s;
+    border-radius: 30px;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 30px;
+    width: 30px;
+    border-radius: 20px;
+    left: 2px;
+    bottom: 2px;
+    z-index: 2;
+    background-color: #e8e8e8;
+    transition: .4s;
+  }
+  
+  .sun svg {
+    position: absolute;
+    top: 6px;
+    left: 36px;
+    z-index: 1;
+    width: 24px;
+    height: 24px;
+  }
+  
+  .moon svg {
+    fill: #73C0FC;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    z-index: 1;
+    width: 24px;
+    height: 24px;
+  }
+  
+  /* .switch:hover */.sun svg {
+    animation: rotate 15s linear infinite;
+  }
+  
+  @keyframes rotate {
+   
+    0% {
+      transform: rotate(0);
+    }
+  
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* .switch:hover */.moon svg {
+    animation: tilt 5s linear infinite;
+  }
+  
+  @keyframes tilt {
+   
+    0% {
+      transform: rotate(0deg);
+    }
+  
+    25% {
+      transform: rotate(-10deg);
+    }
+  
+    75% {
+      transform: rotate(10deg);
+    }
+  
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+  
+  .input:checked + .slider {
+    background-color: #183153;
+  }
+  
+  .input:focus + .slider {
+    box-shadow: 0 0 1px #183153;
+  }
+  
+  .input:checked + .slider:before {
+    transform: translateX(30px);
+  }
+/* swithc 2 */
+
+  .toggle-cont {
+    --primary: #54a8fc;
+    --light: #d9d9d9;
+    --dark: #121212;
+    --gray: #414344;
+  
+    position: relative;
+    z-index: 10;
+  
+    width: fit-content;
+    height: 50px;
+  
+    border-radius: 9999px;
+  }
+  
+  .toggle-cont .toggle-input {
+    display: none;
+  }
+  
+  .toggle-cont .toggle-label {
+    --gap: 5px;
+    --width: 50px;
+  
+    cursor: pointer;
+  
+    position: relative;
+    display: inline-block;
+  
+    padding: 0.5rem;
+    width: calc((var(--width) + var(--gap)) * 2);
+    height: 100%;
+    background-color: var(--dark);
+  
+    border: 1px solid #777777;
+    border-bottom: 0;
+  
+    border-radius: 9999px;
+    box-sizing: content-box;
+    transition: all 0.3s ease-in-out;
+  }
+  .toggle-label::before {
+    content: "";
+  
+    position: absolute;
+    z-index: -10;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  
+    width: calc(100% + 1.5rem);
+    height: calc(100% + 1.5rem);
+    background-color: var(--gray);
+  
+    border: 1px solid #777777;
+    border-bottom: 0;
+    border-radius: 9999px;
+  
+    transition: all 0.3s ease-in-out;
+  }
+  .toggle-label::after {
+    content: "";
+  
+    position: absolute;
+    z-index: -10;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(
+      circle at 50% -100%,
+      rgb(58, 155, 252) 0%,
+      rgba(12, 12, 12, 1) 80%
+    );
+  
+    border-radius: 9999px;
+  }
+  
+  .toggle-cont .toggle-label .cont-icon {
+    position: relative;
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    position: relative;
+    width: var(--width);
+    height: 50px;
+    background-image: radial-gradient(
+      circle at 50% 0%,
+      #666666 0%,
+      var(--gray) 100%
+    );
+  
+    border: 1px solid #aaaaaa;
+    border-bottom: 0;
+    border-radius: 9999px;
+    box-shadow: inset 0 -0.15rem 0.15rem var(--primary),
+      inset 0 0 0.5rem 0.75rem var(--second);
+  
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .cont-icon {
+    overflow: clip;
+    position: relative;
+  }
+  
+  .cont-icon .sparkle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  
+    display: block;
+  
+    width: calc(var(--width) * 1px);
+    aspect-ratio: 1;
+    background-color: var(--light);
+  
+    border-radius: 50%;
+    transform-origin: 50% 50%;
+    rotate: calc(1deg * var(--deg));
+    transform: translate(-50%, -50%);
+    animation: sparkle calc(100s / var(--duration)) linear
+      calc(0s / var(--duration)) infinite;
+  }
+  
+  @keyframes sparkle {
+    to {
+      width: calc(var(--width) * 0.5px);
+      transform: translate(2000%, -50%);
+    }
+  }
+  
+  .cont-icon .icon {
+    width: 1.1rem;
+    fill: var(--light);
+  }
+  
+  .toggle-cont:has(.toggle-input:checked) {
+    --checked: true;
+  }
+  
+  @container style(--checked: true) {
+    .toggle-cont .toggle-label {
+      background-color: #41434400;
+  
+      border: 1px solid #3d6970;
+      border-bottom: 0;
+    }
+  
+    .toggle-cont .toggle-label::before {
+      box-shadow: 0 1rem 2.5rem -2rem #0080ff;
+    }
+  
+    .toggle-cont .toggle-label .cont-icon {
+      overflow: visible;
+  
+      background-image: radial-gradient(
+        circle at 50% 0%,
+        #045ab1 0%,
+        var(--primary) 100%
+      );
+  
+      border: 1px solid var(--primary);
+      border-bottom: 0;
+  
+      transform: translateX(calc((var(--gap) * 2) + 100%)) rotate(-225deg);
+    }
+  
+    .toggle-cont .toggle-label .cont-icon .sparkle {
+      z-index: -10;
+  
+      width: calc(var(--width) * 1.5px);
+      background-color: #acacac;
+  
+      animation: sparkle calc(100s / var(--duration)) linear
+        calc(10s / var(--duration)) infinite;
+    }
+  
+    @keyframes sparkle {
+      to {
+        width: calc(var(--width) * 1px);
+        transform: translate(5000%, -50%);
+      }
+    }
+  }
+  
+
+  /* 3d button */
+
+  /* From Uiverse.io by mobinkakei */ 
+.btn {
+    --color1: #1a8516;
+    --color2: #236b19;
+    perspective: 1000px;
+    padding: 1em 1em;
+    background: linear-gradient(var(--color1), var(--color2));
+    border: none;
+    outline: none;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: #fff;
+    text-shadow: 0 10px 10px #000;
+    cursor: pointer;
+    transform: rotateX(70deg) rotateZ(30deg);
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+  }
+  
+  .btn::before {
+    content: "";
+    width: 100%;
+    height: 15px;
+    background-color: var(--color2);
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    transform: rotateX(90deg);
+    transform-origin: bottom;
+  }
+  
+  .btn::after {
+    content: "";
+    width: 15px;
+    height: 100%;
+    background-color: var(--color1);
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: rotateY(-90deg);
+    transform-origin: right;
+  }
+  
+  .btn:hover {
+    transform: rotateX(30deg) rotateZ(0);
+  }
+  
+
+  /* hammburger */
+  #checkbox {
+    display: none;
+  }
+  
+  .toggle {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition-duration: .3s;
+  }
+  
+  .bars {
+    width: 100%;
+    height: 4px;
+    background-color:black;
+    border-radius: 5px;
+    transition-duration: .3s;
+  }
+  
+  /* #checkbox:checked + .toggle .bars {
+    margin-left: 13px;
+  } */
+  
+  #checkbox:checked + .toggle #bar2 {
+    transform: translateY(14px) rotate(60deg);
+    margin-left: 0;
+    transform-origin: right;
+    transition-duration: .3s;
+    z-index: 2;
+  }
+  
+  #checkbox:checked + .toggle #bar1 {
+    transform: translateY(28px) rotate(-60deg);
+    transition-duration: .3s;
+    transform-origin: left;
+    z-index: 1;
+  }
+  
+  #checkbox:checked + .toggle {
+    transform: rotate(-90deg);
+  }
+  /* #checkbox:checked + .toggle #bar3 {
+    transform: rotate(90deg);
+    transition-duration: .3s;
+    transform-origin:right;
+  } */
+  
+
+  /* loader */
+  .newtons-cradle {
+    --uib-size: 50px;
+    --uib-speed: 1.2s;
+    --uib-color: #474554;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--uib-size);
+    height: var(--uib-size);
+   }
+   
+   .newtons-cradle__dot {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 25%;
+    transform-origin: center top;
+   }
+   
+   .newtons-cradle__dot::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 25%;
+    border-radius: 50%;
+    background-color: var(--uib-color);
+   }
+   
+   .newtons-cradle__dot:first-child {
+    animation: swing var(--uib-speed) linear infinite;
+   }
+   
+   .newtons-cradle__dot:last-child {
+    animation: swing2 var(--uib-speed) linear infinite;
+   }
+   
+   @keyframes swing {
+    0% {
+     transform: rotate(0deg);
+     animation-timing-function: ease-out;
+    }
+   
+    25% {
+     transform: rotate(70deg);
+     animation-timing-function: ease-in;
+    }
+   
+    50% {
+     transform: rotate(0deg);
+     animation-timing-function: linear;
+    }
+   }
+   
+   @keyframes swing2 {
+    0% {
+     transform: rotate(0deg);
+     animation-timing-function: linear;
+    }
+   
+    50% {
+     transform: rotate(0deg);
+     animation-timing-function: ease-out;
+    }
+   
+    75% {
+     transform: rotate(-70deg);
+     animation-timing-function: ease-in;
+    }
+   }
+   
+/* btn */
+
+
+.button button {
+    font-family: inherit;
+    font-size: 20px;
+    background: royalblue;
+    color: white;
+    padding: 0.7em 1em;
+    padding-left: 0.9em;
+    display: flex;
+    align-items: center;
+    border: none;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  
+  .button button span {
+    display: block;
+    margin-left: 0.3em;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .button button svg {
+    display: block;
+    transform-origin: center center;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .button button:hover .svg-wrapper {
+    animation: fly-1 0.6s ease-in-out infinite alternate;
+  }
+  
+  .button button:hover svg {
+    transform: translateX(1.2em) rotate(45deg) scale(1.1);
+  }
+  
+  .button button:hover span {
+    transform: translateX(5em);
+  }
+  
+  .button button:active {
+    transform: scale(0.95);
+  }
+  
+  @keyframes fly-1 {
+    from {
+      transform: translateY(0.1em);
+    }
+  
+    to {
+      transform: translateY(-0.1em);
+    }
+  }
+  

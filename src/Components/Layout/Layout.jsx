@@ -8,11 +8,11 @@ import CustomCursor from '../Cursor/Cursor';
 function Layout() {
   return (
     <>
-    {/* <FluidCanvas /> */}
-    <CustomCursor />
+      {/* <FluidCanvas /> */}
       <HeaderWeb />
       <main>
         <Outlet />
+        {/* <CustomCursor /> */}
       </main>
       <Footer />
     </>
