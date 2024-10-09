@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import "./LightEffectBg.css";
+import "./LightEffectBg.scss";
 
 function LightEffectBg({ image,text }) {
   const maskingElementRef = useRef(null);

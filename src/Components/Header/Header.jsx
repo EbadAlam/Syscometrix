@@ -1,5 +1,5 @@
 import React from 'react'
-import './Header.css';
+import './Header.scss';
 import logo from '../../Assets/Images/logo-white.png';
 import { RoutesConstant } from '../../Utils/Constant';
 import CustomButton from '../CustomButton/CustomButton';

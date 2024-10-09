@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { gsap } from "gsap";
-import "./Menu.css";
+import "./Menu.scss";
 
 const Menu = () => {
   const [isOpen, setIsOpen] = useState(false);

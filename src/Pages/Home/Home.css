@@ -3,6 +3,7 @@
     height: 150vh;
     /* height: 72vw; */
   position: relative;
+  height: 89vw;
 }
 .HeadingDiv{
     text-align: center;
@@ -50,17 +51,21 @@
 .image img{
     border-radius: 20px;
     width: 100%;
+    border-radius: 1.4vw;
 }
 
 .detail .projectDetail{
     margin-top: 45px;
+    margin-top: 3vw;
 }
 .detail h2{
     font-size: 50px;
     color: var(--text-color);
+    font-size: 3.2vw;
 }
 .detail p{
     font-size: 22px;
+    font-size: 1.4vw;
 }
 
 .projectDetailBtn{
@@ -92,10 +97,12 @@
 
 
 .whoWeAreMain{
-    margin-top: 15%;
+    /* margin-top: 15%; */
+    margin-top: 12vw;
   }
 .whoeWeAreDiv{
-    margin-top:150px;
+    /* margin-top:150px; */
+    margin-top: 9vw;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -105,14 +112,17 @@
     width: 49%;
     /* border: 1px solid var(--text-color); */
     background-color: var(--bg-h-color);
-    padding: 40px;
+    /* padding: 40px; */
     box-sizing: border-box;
-    border-radius: 20px;
-    height: 300px;
+    /* border-radius: 20px;
+    height: 300px; */
     display: flex;
     justify-content: space-between;
     pointer-events: all;
     transition: all .4s ease;
+    padding: 2.5vw;
+    border-radius: 1.3vw;
+    height: 19vw;
 }
 .whoWeAre:nth-child(even){
     margin-top: 100px;
@@ -121,12 +131,16 @@
 .whoWeAre .serviceIconDiv{
     color: var(--text-color);
 }
+.whoWeAre .serviceIconDiv h2{
+    font-size: 1.3vw;
+}
 .whoWeAre .serviceName{
     align-self: end;
-    font-size: 35px;
+    /* font-size: 35px; */
     width: 70%;
     text-align: right;
     color: var(--text-color);
+    font-size: 2.3vw;
 }
 
 .whoWeAre:nth-child(1):hover{
@@ -260,6 +274,7 @@
   .tiles__line-img {
     flex: none;
     font-size: 150px;
+    font-size: 9vw;
   }
   
   .tiles__line-img--large {
@@ -270,15 +285,16 @@
 
 
 .testimonial-slider {
-    padding: 40px 0;
+    /* padding: 40px 0; */
+    padding: 2.1vw 0vw;
 }
 
 .testimonial-slide {
     text-align: center;
-    padding: 70px 30px 0px 30px;
+    /* padding: 70px 30px 0px 30px; */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     background: #fff;
-    border-radius: 30px;
+    /* border-radius: 30px; */
     transition: transform 0.5s;
     border: 1px solid;
     box-sizing: border-box;
@@ -286,9 +302,12 @@
     display: flex !important;
     flex-wrap: wrap;
     justify-content: center;
-    height: 550px;
+    /* height: 550px; */
     border-color:  var(--text-color);
     background-color: var(--bg-color);
+    padding: 3.6vw 1.5vw 0vw 1.5vw;
+    border-radius: 1.6vw;
+    height: 29vw;
 }
 .testimonial-slide:hover{
     /* background-color: #f5f5f5;

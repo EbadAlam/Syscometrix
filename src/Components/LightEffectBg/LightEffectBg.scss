@@ -1,0 +1,62 @@
+.mask__primary img,.mask__secondary img {
+    width: 100%;
+}
+.mask__secondary {
+    --x: 0px;
+    --y: 0px;
+    --mask: radial-gradient(circle at var(--x) var(--y), #000 100px, transparent 250px);
+    --mask: radial-gradient(circle at var(--x) var(--y), #000 5vw, transparent 13vw);
+    /* --mask: radial-gradient(circle at var(--x) var(--y), transparent 100px, black 250px); */
+    /* --mask:var(--mask-value); */
+    -webkit-mask-image: var(--mask);
+    mask-image: var(--mask);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.mask__primary,
+.mask__wrapper {
+    position: relative;
+}
+
+.mask__primary img {
+    /* filter: brightness(0.4); */
+    opacity: var(--opacity-value);
+    filter: invert(var(--FI-value));
+
+}
+.mask {
+    cursor: none;
+    cursor: url('../../Assets/Images/torch.png'), auto;
+    position: relative;
+}
+.content{
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%,50%);
+    width: 40%;
+    text-align: center;
+    text-transform: uppercase;
+}
+.mask__primary h2 {
+    color: var(--text-color);
+    font-size: 100px;
+    font-size: 6vw;
+}
+
+.mask__secondary h2 {
+    color: transparent;
+    font-size: 100px;
+    font-size: 6vw;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: var(--text-color);
+}
+.footerImg{
+    margin-top: 8%;
+}

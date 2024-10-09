@@ -1,0 +1,54 @@
+.header{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 1%;
+    align-items: center;
+    box-sizing: border-box;
+    border-bottom: 1px solid #00000026;
+    height: 70px;
+    z-index: 1;
+    position: relative;
+    pointer-events: none;
+    height: 3.7vw;
+}
+.header .menu ul{
+    display: flex;
+    list-style:none;
+    justify-content: center;
+}
+.header .menu ul li {
+    margin: 0px 10px;
+    padding: 20px 5px;
+    pointer-events: auto;
+}
+.header .logo{
+    width: fit-content;
+    pointer-events: all;
+}
+
+.header .contactBtnDiv{
+    text-align: right;
+    width: 25%;
+}
+.header .logo img{
+    width: 100%;
+    max-width: 153px;
+    filter: invert(var(--FI-value));
+    max-width: 8vw;
+}
+.header .contactBtn{
+    background-color: #3f0b49;
+    color: var(--text-color);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 14px 24px;
+    pointer-events: auto;
+    border-radius: 4px;
+}
+.menu li a{
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+}
